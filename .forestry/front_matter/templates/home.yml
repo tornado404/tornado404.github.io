@@ -33,4 +33,4 @@ fields:
     name: teaser_image
     label: Header Teaser Image
 pages:
-  - content/_index.md
+  - content/index.md

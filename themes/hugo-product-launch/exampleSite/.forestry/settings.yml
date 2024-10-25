@@ -5,14 +5,14 @@ admin_path:
 webhook_url:
 sections:
   - type: document
-    path: content/_index.md
+    path: content/index.md
     label: Home
   - type: directory
     path: content
     label: Pages
     create: all
     match: "**/*"
-    exclude: _index.md
+    exclude: index.md
   - type: document
     path: config.toml
     label: Configuration

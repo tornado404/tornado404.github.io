@@ -1,6 +1,6 @@
 baseURL = "https://daozi.art"
 port = 8080
-title = "幻梦飞龙"
+title = "机械臂 AI 智能绘画"
 theme = "hugo-product-launch"
 
 #themesDir = "../.."
@@ -42,7 +42,7 @@ disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT", "404"]
 
 [params]
    [params.logo]
-    main = "images/logo.png"
+    main = "images/logo3.png"
     alt = "Daozi Logo"
     size = "w-42 h-14"
    # A "copyright"-line to be added at the bottom of the page.
@@ -91,12 +91,6 @@ disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT", "404"]
     name = "首页"
     url = "/"
     weight = 1
-
-  [[menu.main]]
-    identifier = "download"
-    name = "下载"
-    url = "/download/"
-    weight = 2
 
   [[menu.main]]
     identifier = "about"

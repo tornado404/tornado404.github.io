@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28973625-4563-4f62-9318-6c01cf1e54b6" name="更改" comment="new page">
-      <change afterPath="$PROJECT_DIR$/content/download/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/desc.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/download/dragon.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/hugo-product-launch/assets/css/desc.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/_default/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/desc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/temp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/logo3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/dragon/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/uarm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.forestry/front_matter/templates/home.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.forestry/front_matter/templates/home.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.forestry/settings.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.forestry/settings.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/_index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/_index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/about/index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hugo_stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/hugo_stats.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/about/single.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/head/styling.html" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/head/styling.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/layouts/partials/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/_gen/assets/css/main.css_ad9a12809e06de71aca16e9138fbecf4.content" beforeDir="false" afterPath="$PROJECT_DIR$/resources/_gen/assets/css/main.css_ad9a12809e06de71aca16e9138fbecf4.content" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/exampleSite/.forestry/front_matter/templates/home.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/exampleSite/.forestry/front_matter/templates/home.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hugo-product-launch/exampleSite/.forestry/settings.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hugo-product-launch/exampleSite/.forestry/settings.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +51,9 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "dragon",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/code/tornado404.github.io/themes/hugo-product-launch/layouts/partials",
+    "last_opened_file_path": "D:/code/tornado404.github.io/static/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,18 +65,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\tornado404.github.io\static\images" />
+      <recent name="D:\code\tornado404.github.io\assets\images" />
+      <recent name="D:\code\tornado404.github.io\content" />
       <recent name="D:\code\tornado404.github.io\themes\hugo-product-launch\layouts\partials" />
       <recent name="D:\code\tornado404.github.io\themes\hugo-product-launch\layouts" />
-      <recent name="D:\code\tornado404.github.io\content" />
-      <recent name="D:\code\tornado404.github.io\themes\hugo-product-launch\layouts\about" />
-      <recent name="D:\code\tornado404.github.io\static\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\tornado404.github.io\content\download" />
       <recent name="D:\code\tornado404.github.io\static\download" />
       <recent name="D:\code\tornado404.github.io\themes\hugo-product-launch\layouts\_default" />
       <recent name="D:\code\tornado404.github.io\layouts" />
       <recent name="D:\code\tornado404.github.io\themes\hugo-product-launch\layouts\about" />
-      <recent name="D:\code\tornado404.github.io\static\images" />
     </key>
   </component>
   <component name="SharedIndexes">
