@@ -6,7 +6,7 @@
       <paths name="幻梦飞龙">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/public" web="/www/wwwroot/tornado404.github.io/public" />
           </mappings>
         </serverdata>
       </paths>

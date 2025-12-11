@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="12830c6f-459d-4382-9c4d-fd46e9de1ae0" name="幻梦飞龙" url="http://daozi.art/">
-        <fileTransfer rootFolder="/www/wwwroot/tornado404.github.io" accessType="SFTP" host="39.106.228.177" port="22" sshConfigId="2624826e-a6a2-40f8-bf08-bef9a4f3ac22" sshConfig="root@39.106.228.177:22 password">
+        <fileTransfer rootFolder="/www/wwwroot/tornado404.github.io/public" accessType="SFTP" host="39.106.228.177" port="22" sshConfigId="2624826e-a6a2-40f8-bf08-bef9a4f3ac22" sshConfig="root@39.106.228.177:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
