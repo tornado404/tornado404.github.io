@@ -253,13 +253,43 @@ social = true
 # disclaimer (HTML format is supported)
 # 免责声明 (支持 HTML 格式)
 disclaimer = ""
-# Home page posts
-# 主页文章列表
-[params.home.posts]
+#VJ|# Home page posts
+#PB|# 主页文章列表
+#KJ|[params.home.posts]
+#SY|enable = false
+#SB|# special amount of posts in each home posts page
+#NV|# 主页每页显示文章数量
+#KT|paginate = 6
+
+# 技术系列配置
+[params.home.techSeries]
 enable = true
-# special amount of posts in each home posts page
-# 主页每页显示文章数量
-paginate = 6
+
+[[params.home.techSeries.series]]
+name = "开发"
+url = "/posts/"
+description = "Go、Java、Docker、Kubernetes 等开发技术栈"
+icon = "fas fa-laptop-code"
+categories = ["go", "java", "android", "docker", "kubernetes", "grpc", "go-micro", "protobuf", "web", "markdown", "git", "linux", "network", "distributed", "mongodb", "mysql", "redis", "kafka", "elasticsearch", "etcd", "tracing", "nginx"]
+
+[[params.home.techSeries.series]]
+name = "运维"
+url = "/posts/"
+description = "Kubernetes、Docker、Nginx、Tekton 等运维工具"
+icon = "fas fa-server"
+categories = ["kubernetes", "docker", "nginx", "tekton", "cloudnative", "linux", "etcd", "kafka", "elasticsearch", "tracing"]
+
+[[params.home.techSeries.series]]
+name = "AI"
+url = "/posts/"
+description = "人工智能与机器学习相关技术"
+icon = "fas fa-brain"
+categories = []
+
+# 最近更新配置
+[params.home.recentPosts]
+enable = true
+count = 5
 # Social config in home page
 # 主页的社交信息设置
 [params.social]
