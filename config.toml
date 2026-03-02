@@ -279,19 +279,19 @@ description = "强化学习算法与实践"
 icon = "fas fa-brain"
 categories = []
 
-[[params.home.techSeries.series]]
-name = "开发"
-url = "/posts/"
-description = "Go、Java、Docker、Kubernetes 等开发技术栈"
-icon = "fas fa-laptop-code"
-categories = ["go", "java", "android", "docker", "kubernetes", "grpc", "go-micro", "protobuf", "web", "markdown", "git", "linux", "network", "distributed", "mongodb", "mysql", "redis", "kafka", "elasticsearch", "etcd", "tracing", "nginx"]
-
-[[params.home.techSeries.series]]
-name = "随笔"
-url = "/posts/"
-description = "生活随笔与杂记"
-icon = "fas fa-pen-fancy"
-categories = ["blog"]
+#SR|[[params.home.techSeries.series]]
+#YM|name = "开发"
+#MX|url = "/posts/"
+#ST|description = "Go、Java、Docker、Kubernetes 等开发技术栈"
+#MB|icon = "fas fa-laptop-code"
+#NR|categories = ["go", "java", "docker", "kubernetes", "grpc", "go-micro", "web", "markdown", "git", "linux", "network", "distributed", "mysql", "redis", "elasticsearch", "etcd", "tracing", "nginx"]
+#XS|
+#SR|[[params.home.techSeries.series]]
+#QM|name = "3D 视觉"
+#MX|url = "/posts/"
+#RV|description = "Web3D、3D 高斯重建、姿态估计等 3D 视觉技术"
+#KY|icon = "fas fa-cube"
+#NX|categories = ["web3d", "3d-gaussian", "pose-estimation"]
 
 # 最近更新配置
 [params.home.recentPosts]
