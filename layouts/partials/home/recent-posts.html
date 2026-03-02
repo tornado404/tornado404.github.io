@@ -1,0 +1,25 @@
+{{- $recentCount := .Site.Params.home.recentPosts.count | default 5 -}}
+{{- $recentPosts := first $recentCount .Site.RegularPages -}}
+<div class="recent-posts-section">
+    <h2 class="section-title">最近更新</h2>
+    <div class="recent-posts-list">
+        {{- range $recentPosts -}}
+            <article class="recent-post-item">
+                <a href="{{ .RelPermalink }}" class="post-title">
+                    {{- .Title | emojify -}}
+                </a>
+                <div class="post-meta">
+                    <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+                    {{- with .Params.categories -}}
+                        <span class="post-category">
+                            {{- range $i, $cat := . -}}
+                                {{- if $i }}, {{ end -}}
+                                {{- $cat -}}
+                            {{- end -}}
+                        </span>
+                    {{- end -}}
+                </div>
+            </article>
+        {{- end -}}
+    </div>
+</div>

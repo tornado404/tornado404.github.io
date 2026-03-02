@@ -1,0 +1,35 @@
+{{- $series := .Site.Params.home.techSeries.series | default slice -}}
+<div class="tech-series-section">
+    <h2 class="section-title">技术系列</h2>
+    <div class="tech-series-grid">
+        {{- range $series -}}
+            {{- $count := 0 -}}
+            {{- with .categories -}}
+                {{- $categories := . -}}
+                {{- range $categories -}}
+                    {{- with $.Site.GetPage (printf "/posts/%s" .) -}}
+                        {{- $count = add $count (len .Pages) -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- else -}}
+                {{- with $.Site.GetPage "/posts" -}}
+                    {{- $count = len .Pages -}}
+                {{- end -}}
+            {{- end -}}
+            <a href="{{ .url | relLangURL }}" class="tech-series-card">
+                <div class="card-icon">
+                    {{- with .icon -}}
+                        <i class="{{ . }}"></i>
+                    {{- else -}}
+                        <i class="fas fa-code"></i>
+                    {{- end -}}
+                </div>
+                <h3 class="card-title">{{ .name }}</h3>
+                <p class="card-description">{{ .description }}</p>
+                <div class="card-meta">
+                    <span class="post-count">{{ $count }} 篇文章</span>
+                </div>
+            </a>
+        {{- end -}}
+    </div>
+</div>
