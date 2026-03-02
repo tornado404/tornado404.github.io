@@ -1,22 +1,22 @@
 {{- $series := .Site.Params.home.techSeries.series | default slice -}}
+{{- $allPosts := .Site.RegularPages -}}
 <div class="tech-series-section">
     <h2 class="section-title">技术系列</h2>
     <div class="tech-series-grid">
         {{- range $series -}}
             {{- $count := 0 -}}
+            {{- $seriesContext := . -}}
             {{- with .categories -}}
                 {{- $categories := . -}}
                 {{- range $categories -}}
-                    {{- with $.Site.GetPage (printf "/posts/%s" .) -}}
-                        {{- $count = add $count (len .Pages) -}}
-                    {{- end -}}
+                    {{- $cat := . -}}
+                    {{- $catPosts := where $allPosts ".Params.categories" "intersect" (slice $cat) -}}
+                    {{- $count = add $count (len $catPosts) -}}
                 {{- end -}}
             {{- else -}}
-                {{- with $.Site.GetPage "/posts" -}}
-                    {{- $count = len .Pages -}}
-                {{- end -}}
+                {{- $count = len $allPosts -}}
             {{- end -}}
-            <a href="{{ .url | relLangURL }}" class="tech-series-card">
+            <a href="{{ $seriesContext.url | relLangURL }}" class="tech-series-card">
                 <div class="card-icon">
                     {{- with .icon -}}
                         <i class="{{ . }}"></i>
