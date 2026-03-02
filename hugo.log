@@ -1,0 +1,26 @@
+Start building sites … 
+hugo v0.108.0-a0d64a46e36dd2f503bfd5ba1a5807b900df231d+extended linux/amd64 BuildDate=2022-12-06T13:37:56Z VendorInfo=gohugoio
+WARN 2026/03/02 11:45:54 
+
+Current environment is "development". The "comment system", "CDN" and "fingerprint" will be disabled.
+当前运行环境是 "development". "评论系统", "CDN" 和 "fingerprint" 不会启用.
+
+                   | EN   
+-------------------+------
+  Pages            | 353  
+  Paginator pages  |  46  
+  Non-page files   |   0  
+  Static files     | 110  
+  Processed images |   0  
+  Aliases          |  66  
+  Sitemaps         |   1  
+  Cleaned          |   0  
+
+Built in 9013 ms
+Watching for changes in /mnt/d/fe/tornado404.github.io/{archetypes,content,static,themes}
+Watching for config changes in /mnt/d/fe/tornado404.github.io/config.toml, /mnt/d/fe/tornado404.github.io/themes/LoveIt/config.toml
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
