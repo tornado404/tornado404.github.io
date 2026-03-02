@@ -234,7 +234,7 @@ rss = 10
 enable = true
 # Gravatar Email for preferred avatar in home page
 # Gravatar 邮箱，用于优先在主页显示的头像
-gravatarEmail = ""
+gravatarEmail = "findfm932@gmail.com"
 # URL of avatar shown in home page
 # 主页显示头像的 URL
 avatarURL = "/img/avatar.png"
@@ -266,6 +266,20 @@ disclaimer = ""
 enable = true
 
 [[params.home.techSeries.series]]
+name = "LLM"
+url = "/posts/"
+description = "大语言模型相关技术与应用"
+icon = "fas fa-robot"
+categories = []
+
+[[params.home.techSeries.series]]
+name = "强化学习"
+url = "/posts/"
+description = "强化学习算法与实践"
+icon = "fas fa-brain"
+categories = []
+
+[[params.home.techSeries.series]]
 name = "开发"
 url = "/posts/"
 description = "Go、Java、Docker、Kubernetes 等开发技术栈"
@@ -273,18 +287,11 @@ icon = "fas fa-laptop-code"
 categories = ["go", "java", "android", "docker", "kubernetes", "grpc", "go-micro", "protobuf", "web", "markdown", "git", "linux", "network", "distributed", "mongodb", "mysql", "redis", "kafka", "elasticsearch", "etcd", "tracing", "nginx"]
 
 [[params.home.techSeries.series]]
-name = "运维"
+name = "随笔"
 url = "/posts/"
-description = "Kubernetes、Docker、Nginx、Tekton 等运维工具"
-icon = "fas fa-server"
-categories = ["kubernetes", "docker", "nginx", "tekton", "cloudnative", "linux", "etcd", "kafka", "elasticsearch", "tracing"]
-
-[[params.home.techSeries.series]]
-name = "AI"
-url = "/posts/"
-description = "人工智能与机器学习相关技术"
-icon = "fas fa-brain"
-categories = []
+description = "生活随笔与杂记"
+icon = "fas fa-pen-fancy"
+categories = ["blog"]
 
 # 最近更新配置
 [params.home.recentPosts]
@@ -293,7 +300,7 @@ count = 5
 # Social config in home page
 # 主页的社交信息设置
 [params.social]
-GitHub = "zhongzichao"
+GitHub = "tornado404"
 Linkedin = ""
 Twitter = ""
 Instagram = ""
@@ -361,7 +368,7 @@ Lichess = ""
 ORCID = ""
 Pleroma = ""
 Kaggle = ""
-Email = "xueduan.li@gmail.com"
+Email = "findfm932@gmail.com"
 RSS = ""
 
 # Page global config
