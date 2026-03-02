@@ -561,6 +561,7 @@ darkTheme = "dark"
 # 第三方库配置
 [params.page.library]
 [params.page.library.css]
+customCSS = "css/custom.css"
 # someCSS = "some.css"
 # located in "assets/" 位于 "assets/"
 # Or 或者
