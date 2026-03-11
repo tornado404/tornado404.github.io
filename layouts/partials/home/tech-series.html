@@ -6,8 +6,12 @@
         {{- range $series -}}
             {{- $count := 0 -}}
             {{- $seriesContext := . -}}
+            {{- $firstCategory := "" -}}
+            {{- $categoryURL := $seriesContext.url | relLangURL -}}
             {{- with .categories -}}
                 {{- $categories := . -}}
+                {{- $firstCategory = index $categories 0 -}}
+                {{- $categoryURL = printf "/categories/%s/" $firstCategory | urlize | relLangURL -}}
                 {{- range $categories -}}
                     {{- $cat := . -}}
                     {{- $catPosts := where $allPosts ".Params.categories" "intersect" (slice $cat) -}}
@@ -16,7 +20,7 @@
             {{- else -}}
                 {{- $count = len $allPosts -}}
             {{- end -}}
-            <a href="{{ $seriesContext.url | relLangURL }}" class="tech-series-card">
+            <a href="{{ $categoryURL }}" class="tech-series-card">
                 <div class="card-icon">
                     {{- with .icon -}}
                         <i class="{{ . }}"></i>

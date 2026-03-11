@@ -1,12 +1,14 @@
 # 指月小筑
-![](./static/img/jinx.png)
+
+![Babylon.js 3D Engine](https://assets.babylonjs.com/screenshots/gaussianSplat.jpg)
+
+> 专注于 3D 视觉、WebGL 技术与云原生开发的个人博客
+> 
+> 本站部分 3D 内容使用 [Babylon.js](https://www.babylonjs.com/) 引擎渲染
+
+![Babylon.js Logo](./static/img/babylonjs-logo.svg)
 
 博客在本地修改及预览完成后 push 到该仓库，由 github action 推送到指定服务器以及 github page 上。
-> 相关教程：[基于 Github Action 自动构建 Hugo 博客](https://www.lixueduan.com/post/blog/01-github-action-deploy-hugo/)
-
-在线查看：
-* https://www.lixueduan.com
-* https://lixd.github.io
 
 
 
