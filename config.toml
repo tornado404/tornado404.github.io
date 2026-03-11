@@ -288,7 +288,7 @@ categories = ["Golang", "Go", "Java", "Docker", "Kubernetes", "gRPC", "Go-Micro"
 
 [[params.home.techSeries.series]]
 name = "3D 视觉"
-url = "/posts/"
+url = "/3d-vision/"
 description = "Web3D、3D 高斯重建、姿态估计等 3D 视觉技术"
 icon = "fas fa-cube"
 categories = ["web3d", "3d-gaussian", "pose-estimation"]
