@@ -1,0 +1,30 @@
+{
+  "sections": [
+    {"name": "blog", "title": "杂谈随笔", "icon": "fas fa-pen-fancy", "description": "记录工作与生活中的点点滴滴，包括学习心得、工具推荐与踩坑总结。", "weight": 11},
+    {"name": "docker", "title": "Docker 容器化", "icon": "fas fa-dharmachakra", "description": "深入理解 Docker 核心原理：Namespace、Cgroups、UnionFS、容器网络与存储。", "weight": 13},
+    {"name": "etcd", "title": "etcd 分布式存储", "icon": "fas fa-database", "description": "深度剖析 etcd 核心机制：Raft 协议、MVCC、WAL 写入流程与 Watch 订阅模型。", "weight": 3},
+    {"name": "git", "title": "Git 版本控制", "icon": "fab fa-git-alt", "description": "Git 常用命令、SSH 密钥配置以及 Git 工作流最佳实践。", "weight": 44},
+    {"name": "go", "title": "Go 语言", "icon": "fas fa-code", "description": "Go 语言核心知识点：并发编程（chan、sync）、运行时（pprof）、标准库与工程实践。", "weight": 15},
+    {"name": "go-micro", "title": "Go-Micro 微服务", "icon": "fas fa-project-diagram", "description": "基于 Go-Micro 框架的微服务开发实践：服务注册发现、gRPC 与链路追踪。", "weight": 6},
+    {"name": "grpc", "title": "gRPC 与 Protobuf", "icon": "fas fa-network-wired", "description": "深度掌握 gRPC：Protobuf 语法、流式通信、TLS 加密、负载均衡与拦截器。", "weight": 7},
+    {"name": "java", "title": "Java 与 Spring", "icon": "fas fa-coffee", "description": "Java 核心技术：JVM 运行时区、设计模式、Spring IoC 与 MyBatis 持久层框架。", "weight": 48},
+    {"name": "kubernetes", "title": "Kubernetes 容器编排", "icon": "fas fa-dharmachakra", "description": "Kubernetes 集群管理、Pod 调度、服务发现与 Helm 包管理器实践。", "weight": 9},
+    {"name": "linux", "title": "Linux 系统", "icon": "fas fa-server", "description": "Linux 系统管理、网络配置与 Shell 脚本编程。", "weight": 10},
+    {"name": "markdown", "title": "Markdown 写作", "icon": "fas fa-pen-nib", "description": "Markdown 语法规范与写作工具推荐，提升文档撰写效率。", "weight": 11},
+    {"name": "mysql", "title": "MySQL 数据库", "icon": "fas fa-server", "description": "MySQL 数据库原理、SQL 优化与高可用架构实践。", "weight": 12},
+    {"name": "network", "title": "计算机网络", "icon": "fas fa-globe", "description": "TCP/IP 协议栈、HTTP 与 HTTPS 网络通信原理。", "weight": 13},
+    {"name": "nginx", "title": "Nginx 反向代理", "icon": "fas fa-server", "description": "Nginx 配置、反向代理、负载均衡与动静分离实践。", "weight": 14},
+    {"name": "redis", "title": "Redis 缓存", "icon": "fas fa-memory", "description": "Redis 数据结构、持久化机制、集群模式与缓存设计实践。", "weight": 15},
+    {"name": "tracing", "title": "分布式追踪", "icon": "fas fa-route", "description": "链路追踪系统原理与 OpenTelemetry 实践。", "weight": 16},
+    {"name": "web", "title": "Web 前端", "icon": "fas fa-globe", "description": "前端开发技术：浏览器原理、Web 性能优化与现代框架实践。", "weight": 17},
+    {"name": "distributed", "title": "分布式系统", "icon": "fas fa-sitemap", "description": "分布式架构理论、CAP 定理、Raft 一致性算法与工程实践。", "weight": 18},
+    {"name": "cloudnative", "title": "云原生开发", "icon": "fas fa-cloud", "description": "云原生技术栈：容器化、微服务、DevOps 与服务网格。", "weight": 19},
+    {"name": "cc-code-read", "title": "Claude Code 源码剖析", "icon": "fas fa-robot", "description": "深入理解 Claude Code 的架构设计、Agent 系统与工具调用机制。", "weight": 2},
+    {"name": "llm", "title": "大语言模型", "icon": "fas fa-brain", "description": "LLM 基础架构、Prompt 工程、微调技术与 AI Agent 实践。", "weight": 21},
+    {"name": "reinforcement-learning", "title": "强化学习", "icon": "fas fa-brain", "description": "强化学习核心算法（Q-Learning、DQN、PPO）与环境交互实践。", "weight": 22},
+    {"name": "web3d", "title": "Web3D 3D 视觉", "icon": "fas fa-cube", "description": "WebGL 与 Babylon.js 构建沉浸式 3D 网页体验。", "weight": 7},
+    {"name": "3d-gaussian", "title": "3D 高斯泼溅", "icon": "fas fa-cube", "description": "3D Gaussian Splatting 原理与 Web 端渲染实践。", "weight": 4},
+    {"name": "pose-estimation", "title": "人体姿态估计", "icon": "fas fa-child", "description": "2D/3D 人体姿态估计模型与浏览器端实时推理实践。", "weight": 5},
+    {"name": "cc-arch-read", "title": "Claude Code 架构精读", "icon": "fas fa-gem", "description": "核心架构思想解读，包括 Multi-Agent 架构、Reasoning Loop、模式与最佳实践。", "weight": 2}
+  ]
+}

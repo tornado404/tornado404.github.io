@@ -18,12 +18,10 @@
             </div>
         {{- end -}}
 
-        {{- /* Tech Series Grid - 新增 */ -}}
-        {{- if ne .Site.Params.home.techSeries.enable false -}}
-            {{- partial "home/tech-series.html" . -}}
-        {{- end -}}
+        {{- /* 博客栏目导航 */ -}}
+        {{- partial "home/sections.html" . -}}
 
-        {{- /* Recent Posts - 新增，替代原文章列表 */ -}}
+        {{- /* 最近更新 */ -}}
         {{- if ne .Site.Params.home.recentPosts.enable false -}}
             {{- partial "home/recent-posts.html" . -}}
         {{- end -}}

@@ -1,0 +1,29 @@
+{{- $sections := .Site.Data.sections.sections | default slice -}}
+{{- $sections = sort $sections "weight" -}}
+<div class="home-sections">
+    <h2 class="section-title">博客栏目</h2>
+    <p class="section-subtitle">点击进入对应栏目，浏览该分类下的所有文章</p>
+    <div class="sections-grid">
+        {{- range $sections -}}
+            {{- $sec := . -}}
+            {{- $secPage := $.Site.GetPage "section" (printf "posts/%s" $sec.name) -}}
+            {{- $count := 0 -}}
+            {{- with $secPage -}}
+                {{- $count = len (where .Pages "Params.draft" "!=" true) -}}
+            {{- end -}}
+            <a href="{{ relLangURL (printf "/posts/%s/" $sec.name) }}" class="section-card">
+                <div class="card-icon">
+                    <i class="{{ $sec.icon }}"></i>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ $sec.title }}</h3>
+                    <p class="card-description">{{ $sec.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="post-count">{{ $count }} 篇</span>
+                    <i class="fas fa-chevron-right card-arrow"></i>
+                </div>
+            </a>
+        {{- end -}}
+    </div>
+</div>

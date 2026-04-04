@@ -1,5 +1,7 @@
-/* Tech Series Section */
-.tech-series-section {
+/* ============================================
+   博客栏目导航 - 首页
+   ============================================ */
+.home-sections {
     padding: 3rem 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -8,60 +10,233 @@
 .section-title {
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--body-text-color);
-}
-
-.tech-series-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.tech-series-card {
-    display: block;
-    padding: 1.5rem;
-    background: var(--card-background);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-decoration: none;
-    color: inherit;
-}
-
-.tech-series-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--global-link-color);
-}
-
-.card-title {
-    font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: var(--body-text-color);
 }
 
-.card-description {
+.section-subtitle {
+    text-align: center;
     font-size: 0.9rem;
     color: var(--secondary-text-color);
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    margin-bottom: 2.5rem;
 }
 
-.card-meta {
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.section-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.section-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--global-link-color);
+}
+
+.section-card:hover .card-arrow {
+    transform: translateX(4px);
+}
+
+.section-card .card-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--body-background);
+    border-radius: 10px;
+    font-size: 1.25rem;
+    color: var(--global-link-color);
+}
+
+.section-card .card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.section-card .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--body-text-color);
+}
+
+.section-card .card-description {
+    font-size: 0.8rem;
+    color: var(--secondary-text-color);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.section-card .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.section-card .post-count {
+    font-size: 0.8rem;
+    color: var(--secondary-text-color);
+    white-space: nowrap;
+}
+
+.section-card .card-arrow {
+    font-size: 0.75rem;
+    color: var(--secondary-text-color);
+    transition: transform 0.2s ease;
+}
+
+/* ============================================
+   栏目页 - section-page
+   ============================================ */
+.section-body {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.section-body h2,
+.section-body h3,
+.section-body h4 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+.section-body p {
+    margin-bottom: 1em;
+    line-height: 1.8;
+}
+
+.section-body ul,
+.section-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1em;
+}
+
+.section-body li {
+    margin-bottom: 0.25em;
+    line-height: 1.8;
+}
+
+.section-body a {
+    color: var(--global-link-color);
+    text-decoration: none;
+}
+
+.section-body a:hover {
+    text-decoration: underline;
+}
+
+.section-body blockquote {
+    border-left: 4px solid var(--global-link-color);
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    background: var(--card-background);
+    border-radius: 4px;
+}
+.section-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.section-header {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+}
+
+.section-header .section-icon {
+    font-size: 3rem;
+    color: var(--global-link-color);
+    margin-bottom: 1rem;
+}
+
+.section-header .section-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.section-header .section-description {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 1.5rem 0 2rem;
+}
+
+.section-page .group-title {
+    font-size: 1.1rem;
+    color: var(--body-text-color);
+    margin: 1.5rem 0 0.75rem;
+}
+
+.section-page .archive-item {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.section-page .archive-item:hover {
+    background: var(--card-background);
+}
+
+.section-page .archive-item-link {
+    color: var(--body-text-color);
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.section-page .archive-item-link:hover {
+    color: var(--global-link-color);
+}
+
+.section-page .archive-item-date {
+    flex-shrink: 0;
+    margin-left: 1rem;
     font-size: 0.85rem;
     color: var(--secondary-text-color);
 }
 
-/* Recent Posts Section */
+.section-page .empty-state {
+    text-align: center;
+    color: var(--secondary-text-color);
+    padding: 3rem 0;
+}
+
+/* ============================================
+   最近更新
+   ============================================ */
 .recent-posts-section {
     padding: 3rem 1.5rem;
     max-width: 800px;
@@ -108,15 +283,4 @@
 
 .post-category {
     font-style: italic;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .tech-series-card {
-        background: #1e1e1e;
-    }
-    
-    .tech-series-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
 }
