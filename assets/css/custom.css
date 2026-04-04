@@ -22,10 +22,25 @@
 }
 
 .sections-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 3rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+    margin-bottom: 3rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+@media (min-width: 700px) {
+    .sections-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sections-grid {
+        grid-template-columns: repeat(6, 1fr) !important;
+    }
 }
 
 .section-card {
@@ -39,6 +54,8 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
     color: inherit;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .section-card:hover {
@@ -232,6 +249,33 @@
     text-align: center;
     color: var(--secondary-text-color);
     padding: 3rem 0;
+}
+
+/* ============================================
+   文章页 - 返回专栏按钮
+   ============================================ */
+.back-to-section {
+    margin-bottom: 1rem;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--global-link-color);
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background: var(--body-background);
+    border-color: var(--global-link-color);
+    text-decoration: none;
 }
 
 /* ============================================

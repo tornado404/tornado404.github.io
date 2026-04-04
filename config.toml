@@ -18,25 +18,14 @@ link = "https://tornado404.github.io"
 [menu]
 [[menu.main]]
 weight = 1
-identifier = "posts"
-# 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+identifier = "home"
 pre = ""
-# 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
 post = ""
-name = "文章"
-url = "/posts/"
-# 当你将鼠标悬停在此菜单链接上时, 将显示的标题
-title = "观海听涛"
+name = "首页"
+url = "/"
+title = "回到首页"
 [[menu.main]]
 weight = 2
-identifier = "tags"
-pre = ""
-post = ""
-name = "标签"
-url = "/tags/"
-title = ""
-[[menu.main]]
-weight = 3
 identifier = "categories"
 pre = ""
 post = ""
@@ -44,7 +33,7 @@ name = "分类"
 url = "/categories/"
 title = ""
 [[menu.main]]
-weight = 4
+weight = 3
 identifier = "about"
 pre = ""
 post = ""
@@ -59,11 +48,15 @@ title = "关于"
 # false 是必要的设置 (https://github.com/dillonzq/LoveIt/issues/158)
 noClasses = false
 
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
 
 [module]
 [module.hugoVersion]
 extended = true
-min = "0.62.0"
+min = "0.146.0"
 
 [params]
 # site default theme ["auto", "light", "dark"]
@@ -95,7 +88,7 @@ images = ["/img/jinx.png"]
 [params.header]
 # desktop header mode ["fixed", "normal", "auto"]
 # 桌面端导航栏模式 ["fixed", "normal", "auto"]
-desktopMode = "fixed"
+desktopMode = "normal"
 # mobile header mode ["fixed", "normal", "auto"]
 # 移动端导航栏模式 ["fixed", "normal", "auto"]
 mobileMode = "auto"
@@ -116,7 +109,7 @@ pre = ""
 post = ""
 # whether to use typeit animation for title name
 # 是否为标题显示打字机动画
-typeit = true
+typeit = false
 
 # Footer config
 # 页面底部信息配置
@@ -139,7 +132,7 @@ author = true
 since = 2018
 # ICP info only in China (HTML format is supported)
 # ICP 备案信息，仅在中国使用 (支持 HTML 格式)
-icp = '<a rel="license external nofollow noopener noreffer" href="https://beian.miit.gov.cn/" target="_blank">渝ICP备20005680号-1</a>'
+icp = '<a rel="license external nofollow noopener noreffer" href="https://beian.miit.gov.cn/" target="_blank">京ICP备2022005236号-2</a>'
 # license info (HTML format is supported)
 # 许可协议信息 (支持 HTML 格式)
 license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
