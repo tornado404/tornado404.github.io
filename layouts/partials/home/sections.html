@@ -1,4 +1,4 @@
-{{- $sections := .Site.Data.sections.sections | default slice -}}
+{{- $sections := hugo.Data.sections.sections | default slice -}}
 {{- $sections = sort $sections "weight" -}}
 <div class="home-sections">
     <h2 class="section-title">博客栏目</h2>

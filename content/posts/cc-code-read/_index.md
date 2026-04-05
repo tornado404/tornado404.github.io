@@ -17,11 +17,10 @@ description: 深入理解 Claude Code 的架构设计、Agent 系统与工具调
 | 05 | [查询引擎 — 流式响应与上下文优化](/posts/cc-code-read/04_%E6%9F%A5%E8%AF%A2%E5%BC%95%E6%93%8E/) | 已完成 |
 | 06 | [上下文与记忆 — System Prompt、Token 预算与记忆系统](/posts/cc-code-read/05_%E4%B8%8A%E4%B8%8B%E6%96%87_%E8%AE%B0%E5%BF%86/) | 已完成 |
 | 07 | [权限与安全 — 分层过滤架构与 Auto Mode 分类器](/posts/cc-code-read/06_%E6%9D%83%E9%99%90%E5%AE%89%E5%85%A8/) | 已完成 |
-| 08 | [OpenCode CLI UI 组件 — Go + Cobra 的 TUI 远程控制](/posts/cc-code-read/07_UI%E7%BB%84%E4%BB%B6/) | 已完成 |
+| 08 | [OpenCode CLI UI 组件 — Go + Cobra 的 TUI 远程控制](/posts/cc-code-read/07_ui%E7%BB%84%E4%BB%B6/) | 已完成 |
 | 09 | [OpenCode 服务层 — HTTP 客户端、配置与依赖注入](/posts/cc-code-read/08_%E6%9C%8D%E5%8A%A1%E5%B1%82/) | 已完成 |
-| 10 | [桥接与插件 — MCP 协议、插件生命周期与 Bridge 系统](/posts/cc-code-read/09_%E6%A1%A5%E6%8E%A5_%E6%8F%92%E4%BB%B6/) | 已完成 |
-| 11 | Agent 协调系统 — 子 Agent 派生、团队协作与自反思 | 待完成 |
-| 12 | 性能优化 — 启动加速、上下文压缩与资源管理 | 待完成 |
+| 10 | [Agent 协调 — 子 Agent 派生、团队协作与自反思](/posts/cc-code-read/10_Agent%E5%8D%8F%E8%B0%83/) | 已完成 |
+| 11 | [性能优化 — 启动加速、上下文压缩与资源管理](/posts/cc-code-read/11_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/) | 待完成 |
 
 ## 为什么要研究 Claude Code 源码
 

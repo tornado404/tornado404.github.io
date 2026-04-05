@@ -4,11 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal blog ("观海听涛" / "指月小筑") built with [Hugo](https://gohugo.io/) using the [LoveIt](https://github.com/lixd/LoveIt) theme. The theme is included as a **git submodule** (not a Hugo module), pointing to a fork at `https://github.com/lixd/LoveIt`. Posts are written in Chinese and cover a wide range of technical topics including cloud-native development, Go, Java, Docker, Kubernetes, gRPC, distributed systems, etcd, Web3D, and LLM/AI.
+This is a personal blog ("观海听涛" / "指月小筑") built with [Hugo](https://gohugo.io/) using the [LoveIt](https://github.com/dillonzq/LoveIt) theme. The theme is included as a **git submodule** (not a Hugo module), pointing to `https://github.com/dillonzq/LoveIt`. Posts are written in Chinese and cover a wide range of technical topics including cloud-native development, Go, Java, Docker, Kubernetes, gRPC, distributed systems, etcd, Web3D, and LLM/AI.
 
 ## Hugo Version
 
-Currently tested with Hugo **v0.100.2 extended** (GitHub Actions uses 0.108.0 extended). Updating Hugo may cause compatibility issues.
+Currently tested with Hugo **v0.159.2 extended**.
+
+## Theme Version
+
+Uses [dillonzq/LoveIt](https://github.com/dillonzq/LoveIt) at latest master. Custom partial overrides in `layouts/` provide Baidu Analytics and Google AdSense support (lixd fork features merged back).
 
 ## Common Commands
 

@@ -2,7 +2,7 @@
 
 {{- define "content" -}}
 {{- $sectionName := .Section -}}
-{{- $sectionMap := index (where .Site.Data.sections.sections "name" $sectionName) 0 -}}
+{{- $sectionMap := index (where hugo.Data.sections.sections "name" $sectionName) 0 -}}
 {{- $title := .Title | default ($sectionName | humanize) -}}
 {{- $description := $sectionMap.description | default "" -}}
 {{- $icon := $sectionMap.icon | default "fas fa-folder" -}}

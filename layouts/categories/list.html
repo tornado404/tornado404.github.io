@@ -1,0 +1,30 @@
+{{- define "title" }}专栏 - {{ .Site.Title }}{{- end -}}
+
+{{- define "content" -}}
+{{- $sections := index (index hugo.Data "sections").sections -}}
+{{- $sections = sort $sections "weight" -}}
+
+<div class="page">
+    <div class="section-header" style="text-align:center; margin-bottom: 3rem;">
+        <h1 class="section-title">专栏</h1>
+        <p class="section-description">技术专栏分类汇总，持续更新中...</p>
+    </div>
+
+    <div class="categories-card" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        {{- range $sections -}}
+        <div class="card-item">
+            <div class="card-item-wrapper">
+                <h3 class="card-item-title">
+                    <a href="{{ printf "/posts/%s/" .name | relLangURL }}" class="more-single-link">
+                        {{- with .icon -}}<i class="{{ . }}" style="margin-right: 0.5rem;"></i>{{- end -}}{{ .title }}
+                    </a>
+                </h3>
+                {{- with .description -}}
+                <p style="font-size: 0.875rem; color: var(--third-color); margin: 0.5rem 0;">{{ . }}</p>
+                {{- end -}}
+            </div>
+        </div>
+        {{- end -}}
+    </div>
+</div>
+{{- end -}}
