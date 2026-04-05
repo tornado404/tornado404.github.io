@@ -33,13 +33,13 @@
 
 @media (min-width: 700px) {
     .sections-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 }
 
 @media (min-width: 1200px) {
     .sections-grid {
-        grid-template-columns: repeat(6, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 }
 
