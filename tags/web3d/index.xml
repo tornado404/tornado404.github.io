@@ -1,1 +1,57 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Web3D - Tag -</title><link>https://tornado404.github.io/tags/web3d/</link><description>Web3D - Tag -</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>findfm932@gmail.com (钟子期)</managingEditor><webMaster>findfm932@gmail.com (钟子期)</webMaster><lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/tags/web3d/" rel="self" type="application/rss+xml"/><item><title>Babylon.js 入门教程：Web3D 开发的强大工具</title><link>https://tornado404.github.io/posts/web3d/01-babylonjs-introduction/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><author>钟子期</author><guid>https://tornado404.github.io/posts/web3d/01-babylonjs-introduction/</guid><description>什么是 Babylon.js Babylon.js 是一个功能强大的开源 Web3D 引擎，由微软开发并维护。它使用 WebGL 和 WebGPU 技术在浏览器中渲染 3D 图形，为开发者提供了完整的 3D 开发工具链。 为什么选择 Babylon.js</description></item><item><title>Three.js vs Babylon.js：如何选择 Web3D 引擎</title><link>https://tornado404.github.io/posts/web3d/02-threejs-vs-babylonjs/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><author>钟子期</author><guid>https://tornado404.github.io/posts/web3d/02-threejs-vs-babylonjs/</guid><description>两大 Web3D 引擎对比 在 Web3D 开发领域，Three.js 和 Babylon.js 是最流行的两个选择。本文将从多个维度对比这两个引擎，帮助你做出合适的选择。 核心差异概览 对比维</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Web3D - 标签 -</title><link>https://tornado404.github.io/tags/web3d/</link><description>Web3D - 标签 -</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/tags/web3d/" rel="self" type="application/rss+xml"/><item><title>Babylon.js 入门教程：Web3D 开发的强大工具</title><link>https://tornado404.github.io/posts/web3d/01-babylonjs-introduction/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/web3d/01-babylonjs-introduction/</guid><description><![CDATA[<h2 id="什么是-babylonjs">什么是 Babylon.js</h2>
+<p><a href="https://babylonjs.com/" target="_blank" rel="noopener noreffer ">Babylon.js</a> 是一个功能强大的开源 Web3D 引擎，由微软开发并维护。它使用 WebGL 和 WebGPU 技术在浏览器中渲染 3D 图形，为开发者提供了完整的 3D 开发工具链。</p>
+<h3 id="为什么选择-babylonjs">为什么选择 Babylon.js</h3>
+<p>与其他 Web3D 库（如 Three.js）相比，Babylon.js 有以下优势：</p>]]></description></item><item><title>Three.js vs Babylon.js：如何选择 Web3D 引擎</title><link>https://tornado404.github.io/posts/web3d/02-threejs-vs-babylonjs/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/web3d/02-threejs-vs-babylonjs/</guid><description><![CDATA[<h2 id="两大-web3d-引擎对比">两大 Web3D 引擎对比</h2>
+<p>在 Web3D 开发领域，<strong>Three.js</strong> 和 <strong>Babylon.js</strong> 是最流行的两个选择。本文将从多个维度对比这两个引擎，帮助你做出合适的选择。</p>
+<hr>
+<h2 id="核心差异概览">核心差异概览</h2>
+<table>
+  <thead>
+      <tr>
+          <th>对比维度</th>
+          <th>Three.js</th>
+          <th>Babylon.js</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>开发团队</td>
+          <td>社区驱动</td>
+          <td>微软官方支持</td>
+      </tr>
+      <tr>
+          <td>语言支持</td>
+          <td>JavaScript + 类型定义</td>
+          <td>原生 TypeScript</td>
+      </tr>
+      <tr>
+          <td>许可证</td>
+          <td>MIT</td>
+          <td>Apache 2.0</td>
+      </tr>
+      <tr>
+          <td>包大小</td>
+          <td>~600KB (minified)</td>
+          <td>~800KB (minified)</td>
+      </tr>
+      <tr>
+          <td>学习曲线</td>
+          <td>较低</td>
+          <td>中等</td>
+      </tr>
+      <tr>
+          <td>文档质量</td>
+          <td>基础文档 + 大量示例</td>
+          <td>完整官方文档</td>
+      </tr>
+      <tr>
+          <td>社区规模</td>
+          <td>极大</td>
+          <td>中等</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="详细对比分析">详细对比分析</h2>
+<h3 id="1-架构设计">1. 架构设计</h3>
+<p><strong>Three.js</strong> 采用更轻量、灵活的设计：</p>]]></description></item></channel></rss>
