@@ -2,7 +2,7 @@
   "sections": [
     {"name": "blog", "title": "杂谈随笔", "icon": "fas fa-pen-fancy", "description": "记录工作与生活中的点点滴滴，包括学习心得、工具推荐与踩坑总结。", "weight": 11},
     {"name": "docker", "title": "Docker 容器化", "icon": "fas fa-dharmachakra", "description": "深入理解 Docker 核心原理：Namespace、Cgroups、UnionFS、容器网络与存储。", "weight": 13},
-    {"name": "etcd", "title": "etcd 分布式存储", "icon": "fas fa-database", "description": "深度剖析 etcd 核心机制：Raft 协议、MVCC、WAL 写入流程与 Watch 订阅模型。", "weight": 3},
+    {"name": "etcd", "title": "etcd 分布式存储", "icon": "fas fa-database", "description": "深度剖析 etcd 核心机制：Raft 协议、MVCC、WAL 写入流程与 Watch 订阅模型。", "weight": 4},
     {"name": "git", "title": "Git 版本控制", "icon": "fab fa-git-alt", "description": "Git 常用命令、SSH 密钥配置以及 Git 工作流最佳实践。", "weight": 44},
     {"name": "go", "title": "Go 语言", "icon": "fas fa-code", "description": "Go 语言核心知识点：并发编程（chan、sync）、运行时（pprof）、标准库与工程实践。", "weight": 15},
     {"name": "go-micro", "title": "Go-Micro 微服务", "icon": "fas fa-project-diagram", "description": "基于 Go-Micro 框架的微服务开发实践：服务注册发现、gRPC 与链路追踪。", "weight": 6},
@@ -25,6 +25,7 @@
     {"name": "web3d", "title": "Web3D 3D 视觉", "icon": "fas fa-cube", "description": "WebGL 与 Babylon.js 构建沉浸式 3D 网页体验。", "weight": 7},
     {"name": "3d-gaussian", "title": "3D 高斯泼溅", "icon": "fas fa-cube", "description": "3D Gaussian Splatting 原理与 Web 端渲染实践。", "weight": 4},
     {"name": "pose-estimation", "title": "人体姿态估计", "icon": "fas fa-child", "description": "2D/3D 人体姿态估计模型与浏览器端实时推理实践。", "weight": 5},
+    {"name": "omo-code-read", "title": "OMO Code 源码剖析", "icon": "fas fa-code", "description": "深入理解 Open Multi-Agent Orchestrator 框架的架构设计与核心机制。", "weight": 3},
     {"name": "cc-arch-read", "title": "Claude Code 架构精读", "icon": "fas fa-gem", "description": "核心架构思想解读，包括 Multi-Agent 架构、Reasoning Loop、模式与最佳实践。", "weight": 2}
   ]
 }
