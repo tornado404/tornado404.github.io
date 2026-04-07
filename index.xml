@@ -1,4 +1,5 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title/><link>https://tornado404.github.io/</link><description>观海听涛是钟子期的技术分享博客。内容涵盖云原生、Golang、Kubernetes、Docker相关的研究与知识分享。</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>IDE 集成 — Zed、VS Code 与 ACP 协议</title><link>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</guid><description><![CDATA[<h1 id="ide-集成--zedvs-code-与-acp-协议">IDE 集成 — Zed、VS Code 与 ACP 协议</h1>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title/><link>https://tornado404.github.io/</link><description>观海听涛是钟子期的技术分享博客。内容涵盖云原生、Golang、Kubernetes、Docker相关的研究与知识分享。</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Claude Code 记忆系统：索引与按需检索的架构设计</title><link>https://tornado404.github.io/posts/cc-arch-read/02_memory-system/</link><pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/cc-arch-read/02_memory-system/</guid><description><![CDATA[<h2 id="概述">概述</h2>
+<p>Claude Code 的记忆系统（memdir）是一套精心设计的持久化知识管理机制，其核心思想是：<strong>MEMORY.md 只作为索引，内容分散在独立文件中，通过 Sonnet Selector 在每个查询循环结束时按需检索相关条目</strong>，防止上下文溢出。</p>]]></description></item><item><title>IDE 集成 — Zed、VS Code 与 ACP 协议</title><link>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</guid><description><![CDATA[<h1 id="ide-集成--zedvs-code-与-acp-协议">IDE 集成 — Zed、VS Code 与 ACP 协议</h1>
 <blockquote>
 <p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/ide/</code>, <code>packages/opencode/src/acp/</code>, <code>packages/extensions/</code>
 核心文件：<code>ide/index.ts</code>, <code>acp/agent.ts</code>, <code>acp/session.ts</code>
@@ -171,8 +172,4 @@
 <blockquote>
 <p>源码路径：<code>/mnt/e/code/cc/omo-code/src/features/background-agent/</code>, <code>src/features/tmux-subagent/</code>
 核心文件：<code>BackgroundManager.ts</code>, <code>TmuxSessionManager.ts</code>, <code>ConcurrencyManager.ts</code>
-技术栈：Promise + Polling + Tmux CLI</p>]]></description></item><item><title>命令系统 — Slash 命令与动态加载</title><link>https://tornado404.github.io/posts/opencode-read/03-command-system/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/03-command-system/</guid><description><![CDATA[<h1 id="命令系统--slash-命令与动态加载">命令系统 — Slash 命令与动态加载</h1>
-<blockquote>
-<p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/command/</code>
-核心文件：<code>command/index.ts</code>
-技术栈：Effect + Markdown Frontmatter + MCP Prompts</p>]]></description></item></channel></rss>
+技术栈：Promise + Polling + Tmux CLI</p>]]></description></item></channel></rss>
