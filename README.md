@@ -58,11 +58,24 @@ git submodule update --init --recursive
 
 ```
 # 查看hugo版本号
-hugo version 
-# 本地运行
+hugo version
+# 本地运行（开发预览）
 hugo server
-# 本地运行 指定为 production 环境，默认为 development 环境，该环境下部分特性不会开启
+# 本地运行，指定为 production 环境
 hugo serve -e production
-# 生成public文件
+# 生成 public 文件
 hugo
 ```
+
+## 文章发布流程
+
+Hugo 通过 frontmatter 中的 `draft` 字段控制文章发布状态，所有文章统一存放在 `content/posts/` 下：
+
+1. **新建文章**：使用 `hugo new posts/<section>/<slug>.md` 创建，新文章自动从 `archetypes/default.md` 继承 `draft: true`
+2. **写作**：在本地完成文章内容编写，可通过 `hugo server` 实时预览
+3. **发布**：将 frontmatter 中的 `draft: true` 改为 `draft: false`
+4. **构建**：`hugo` 生成 public 目录并推送到仓库，GitHub Actions 自动部署到 GitHub Pages 和服务器
+
+**草稿不过滤**：`/posts/<section>/` 页面默认显示所有文章（包括草稿），首页栏目卡片中的数字统计已自动排除草稿。发布前请确保 `draft: false`。
+
+**新增专栏**：在 `data/sections.json` 中添加条目，专栏卡片即会出现在首页。`cc-source-review/` 目录下有源码阅读笔记，可在该专栏下新增同名 markdown 文件并链接到 `cc-arch-read/`。
