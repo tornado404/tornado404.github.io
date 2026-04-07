@@ -2,6 +2,7 @@
 title: "Claude Code Agent 协调系统源码深度解读"
 date: 2026-04-03
 draft: false
+authors: ["钟子期"]
 ---
 
 # Claude Code Agent 协调系统源码深度解读

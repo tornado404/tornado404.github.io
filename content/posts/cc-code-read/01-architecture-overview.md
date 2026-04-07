@@ -2,6 +2,7 @@
 title: "Claude Code 项目架构总览"
 date: 2026-04-02
 draft: false
+authors: ["钟子期"]
 ---
 
 # Claude Code 项目架构总览
