@@ -1,0 +1,239 @@
+<!doctype html><html lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>架构概览 — 插件架构与初始化流程 -</title><meta name=Description content="观海听涛是钟子期的技术分享博客。内容涵盖云原生、Golang、Kubernetes、Docker相关的研究与知识分享。"><meta property="og:url" content="https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/"><meta property="og:site_name" content="钟子期的个人博客"><meta property="og:title" content="架构概览 — 插件架构与初始化流程"><meta property="og:description" content="架构概览 — 插件架构与初始化流程 源码路径：/mnt/e/code/cc/omo-code/src/ 核心文件：index.ts, create-hooks.ts, create-managers.ts, create-tools.ts 技术栈：Bun + TypeScript + Zod v4 + Effect + @opencode-ai/plugin"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-04-06T00:00:00+00:00"><meta property="article:modified_time" content="2026-04-06T00:00:00+00:00"><meta property="og:image" content="https://tornado404.github.io/img/jinx.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://tornado404.github.io/img/jinx.png"><meta name=twitter:title content="架构概览 — 插件架构与初始化流程"><meta name=twitter:description content="架构概览 — 插件架构与初始化流程 源码路径：/mnt/e/code/cc/omo-code/src/ 核心文件：index.ts, create-hooks.ts, create-managers.ts, create-tools.ts 技术栈：Bun + TypeScript + Zod v4 + Effect + @opencode-ai/plugin"><meta name=application-name content="观海听涛"><meta name=apple-mobile-web-app-title content="观海听涛"><meta name=referrer content="no-referrer"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/><link rel=prev href=https://tornado404.github.io/posts/omo-code-read/04-lifecycle-hooks/><link rel=next href=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/><link rel=stylesheet href=/css/style.min.69591820d07f895ba30cf787cbd90a858a6409464fdbf41d89a979744dc5b628.css integrity="sha256-aVkYINB/iVujDPeHy9kKhYpkCUZP2/Qdial5dE3Ftig="><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"架构概览 — 插件架构与初始化流程","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/tornado404.github.io\/posts\/omo-code-read\/01-architecture-overview\/"},"image":["https:\/\/tornado404.github.io\/img\/jinx.png"],"genre":"posts","wordcount":1957,"url":"https:\/\/tornado404.github.io\/posts\/omo-code-read\/01-architecture-overview\/","datePublished":"2026-04-06T00:00:00+00:00","dateModified":"2026-04-06T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"xxxx"},"description":""}</script></head><body data-header-desktop=normal data-header-mobile=auto><script>const query=window.matchMedia("(prefers-color-scheme: dark)");function applyTheme(){let e=window.localStorage?.getItem("theme")||"auto",t=e==="dark"||e==="auto"&&query.matches;document.body.setAttribute("theme",t?"dark":"light"),document.body.setAttribute("cfg-theme",e)}applyTheme(),query.addEventListener("change",applyTheme)</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title>AI缝纫机</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/ title=回到首页>首页 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/ title=关于>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-spin" aria-hidden=true></i>
+</span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title>AI缝纫机</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/ title=回到首页>首页</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/about/ title=关于>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><div class=back-to-section><a href=/posts/ class=back-btn><i class="fas fa-chevron-left" aria-hidden=true></i>&nbsp;返回专栏：Posts</a></div><h1 class="single-title animate__animated animate__flipInX">架构概览 — 插件架构与初始化流程</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle" aria-hidden=true></i>xxxx</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt" aria-hidden=true></i>&nbsp;<time datetime=2026-04-06>2026-04-06</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden=true></i>&nbsp;约 1957 字&nbsp;
+<i class="far fa-clock" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-概述>1. 概述</a></li><li><a href=#2-整体架构>2. 整体架构</a></li><li><a href=#3-目录结构>3. 目录结构</a></li><li><a href=#4-初始化流程详解>4. 初始化流程详解</a><ul><li><a href=#41-插件入口>4.1 插件入口</a></li><li><a href=#42-管理器系统>4.2 管理器系统</a></li><li><a href=#43-工具注册>4.3 工具注册</a></li><li><a href=#44-hook-组合>4.4 Hook 组合</a></li></ul></li><li><a href=#5-与-opencode-的架构对比>5. 与 OpenCode 的架构对比</a></li><li><a href=#6-核心文件索引>6. 核心文件索引</a></li></ul></nav></div></div><div class=content id=content><h1 id=架构概览--插件架构与初始化流程>架构概览 — 插件架构与初始化流程</h1><blockquote><p>源码路径：<code>/mnt/e/code/cc/omo-code/src/</code>
+核心文件：<code>index.ts</code>, <code>create-hooks.ts</code>, <code>create-managers.ts</code>, <code>create-tools.ts</code>
+技术栈：Bun + TypeScript + Zod v4 + Effect + @opencode-ai/plugin</p></blockquote><hr><h2 id=1-概述>1. 概述</h2><p>Oh-My-OpenAgent 是一个 <strong>OpenCode 插件</strong>，通过 <code>@opencode-ai/plugin</code> 暴露的 Hook 接口将自己的功能编织进 OpenCode 的执行管线。它不是 fork，而是<strong>装饰层</strong>——对 OpenCode 的行为进行扩展和覆盖，而不修改其核心代码。</p><hr><h2 id=2-整体架构>2. 整体架构</h2><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><pre tabindex=0><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Oh-My-OpenCode 插件                          │
+│                                                              │
+│  OhMyOpenCodePlugin(ctx)                                       │
+│    │                                                         │
+│    ├─ loadPluginConfig()      配置加载与 Zod 验证            │
+│    ├─ createManagers()        管理器实例化                    │
+│    ├─ createTools()           工具注册                       │
+│    ├─ createHooks()           Hook 组合                       │
+│    └─ createPluginInterface() OpenCode 接口暴露               │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      OpenCode 核心                              │
+│                                                              │
+│  Agent System ─── Tool Registry ─── Hook Pipeline ─── Session │
+└─────────────────────────────────────────────────────────────────┘</code></pre></div><hr><h2 id=3-目录结构>3. 目录结构</h2><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><pre tabindex=0><code>src/
+├── index.ts                           # 插件入口
+├── plugin-config.ts                   # 多层配置加载
+├── create-hooks.ts                   # 52 个 Hook 组合
+├── create-managers.ts                # 管理器实例化
+├── create-tools.ts                   # 工具注册入口
+│
+├── agents/                           # 11 个 Agent
+│   ├── sisyphus/                    # 主协调者
+│   │   ├── index.ts
+│   │   ├── prompt.ts
+│   │   ├── gpt-5-4.ts              # GPT-5.4 优化提示
+│   │   ├── gemini.ts
+│   │   └── anthropic.ts
+│   ├── hephaestus/                  # 深工作者 (GPT 原生)
+│   ├── prometheus/                  # 战略规划者
+│   ├── atlas/                       # Todo 编排者
+│   ├── oracle/                       # 架构顾问
+│   ├── librarian/                   # 文档搜索
+│   ├── explore/                     # 快速 grep
+│   ├── metis/                       # 计划差距分析
+│   ├── momus/                       # 计划审查
+│   ├── sisyphus-junior/            # 轻量委托者
+│   ├── multimodal-looker/          # 视觉分析
+│   ├── builtin-agents.ts           # Agent 工厂模式
+│   ├── types.ts                    # Agent 类型定义
+│   └── dynamic-agent-prompt-builder.ts  # 动态提示构建
+│
+├── tools/                           # 26 个扩展工具
+│   ├── delegate-task/               # 分类委托任务
+│   ├── hashline-edit/               # 哈希锚定编辑
+│   ├── background-task/             # 后台任务
+│   ├── skill/                       # Skill 调用
+│   ├── skill-mcp/                  # Skill-MCP 集成
+│   ├── session-manager/             # 会话管理
+│   ├── call-omo-agent/              # 直接调用 OMO Agent
+│   ├── look-at/                    # 视觉分析
+│   ├── lsp/                        # LSP 工具
+│   ├── ast-grep/                   # AST 搜索
+│   ├── grep/                       # 正则搜索
+│   ├── glob/                       # 文件模式
+│   ├── interactive-bash/           # Tmux Bash
+│   ├── slashcommand/               # 命令发现
+│   ├── task/                       # 任务 CRUD
+│   └── plugin/                     # 工具注册表
+│
+├── hooks/                           # 52 个 Hook
+│   ├── context-window-monitor/     # Token 预算监控
+│   ├── session-notification/       # 桌面通知
+│   ├── background-notification/    # 后台任务通知
+│   ├── ralph-loop/                 # 自引用循环检测
+│   ├── comment-checker/            # AI slop 检测
+│   ├── thinking-block-validator/   # 思考块验证
+│   ├── edit-error-recovery/        # 编辑错误恢复
+│   ├── compaction-context-injector/ # 压缩上下文保留
+│   ├── runtime-fallback/            # 模型错误恢复
+│   ├── todo-continuation-enforcer/ # Todo 强制完成
+│   ├── preemptive-compaction/       # 抢占式压缩
+│   └── 40+ 更多...
+│
+├── features/                        # 19 个功能模块
+│   ├── background-agent/           # 后台 Agent 管理
+│   ├── tmux-subagent/             # Tmux 会话管理
+│   ├── skill-mcp-manager/         # Skill-MCP 生命周期
+│   ├── opencode-skill-loader/      # Skill 加载
+│   ├── builtin-skills/             # 8 个内置 Skill
+│   ├── builtin-commands/           # 8 个内置命令
+│   ├── claude-code-agent-loader/   # OpenCode Agent 兼容
+│   ├── claude-code-command-loader/  # OpenCode 命令兼容
+│   ├── claude-code-mcp-loader/    # OpenCode MCP 兼容
+│   ├── claude-code-plugin-loader/  # OpenCode 插件兼容
+│   ├── mcp-oauth/                  # MCP OAuth
+│   ├── comment-checker/            # AI slop 检查
+│   └── 8 more...
+│
+├── mcp/                             # 3 个内置 MCP
+│   ├── websearch/                  # Exa/Tavily 搜索
+│   ├── context7/                    # 官方文档
+│   └── grep_app/                   # GitHub 代码搜索
+│
+├── plugin-handlers/                 # OpenCode Hook 处理
+│   ├── config-handler.ts            # 6 阶段配置加载
+│   ├── agent-config-handler.ts      # Agent 配置
+│   ├── tool-config-handler.ts       # 工具配置
+│   ├── mcp-config-handler.ts       # MCP 配置
+│   ├── command-config-handler.ts    # 命令注册
+│   └── provider-config-handler.ts   # Provider 配置
+│
+├── config/                          # Zod v4 Schema (27 个文件)
+│   └── schema/
+│       ├── oh-my-opencode-config.ts
+│       ├── agent-overrides.ts
+│       ├── categories.ts
+│       ├── hooks.ts
+│       ├── fallback-models.ts
+│       └── 22 more...
+│
+├── cli/                             # CLI 工具
+│   ├── install.ts                   # 交互式安装
+│   ├── run.ts                      # 非交互式执行
+│   ├── doctor.ts                   # 健康诊断
+│   └── mcp-oauth/                  # OAuth 工具
+│
+└── shared/                          # 100+ 工具函数</code></pre></div><hr><h2 id=4-初始化流程详解>4. 初始化流程详解</h2><h3 id=41-插件入口>4.1 插件入口</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// src/index.ts
+</span></span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kd>function</span> <span class=nx>OhMyOpenCodePlugin</span><span class=p>(</span><span class=nx>ctx</span>: <span class=kt>PluginContext</span><span class=p>)</span><span class=o>:</span> <span class=nx>PluginInterface</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 1. 加载并验证配置
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>config</span> <span class=o>=</span> <span class=nx>loadPluginConfig</span><span class=p>(</span><span class=nx>ctx</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 2. 实例化管理器
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>managers</span> <span class=o>=</span> <span class=nx>createManagers</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 3. 构建工具注册表
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>tools</span> <span class=o>=</span> <span class=nx>createTools</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 4. 组合 Hook
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>hooks</span> <span class=o>=</span> <span class=nx>createHooks</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 5. 暴露 OpenCode 接口
+</span></span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>createPluginInterface</span><span class=p>(</span><span class=nx>tools</span><span class=p>,</span> <span class=nx>hooks</span><span class=p>,</span> <span class=nx>managers</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><h3 id=42-管理器系统>4.2 管理器系统</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// src/create-managers.ts
+</span></span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>createManagers</span><span class=p>(</span><span class=nx>config</span>: <span class=kt>Config</span><span class=p>,</span> <span class=nx>ctx</span>: <span class=kt>PluginContext</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Tmux 会话管理器 — 实时可视化多 Agent
+</span></span></span><span class=line><span class=cl>    <span class=nx>tmuxManager</span>: <span class=kt>new</span> <span class=nx>TmuxSessionManager</span><span class=p>(</span><span class=nx>config</span><span class=p>.</span><span class=nx>tmux</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 后台 Agent 管理器 — 并发控制
+</span></span></span><span class=line><span class=cl>    <span class=nx>backgroundManager</span>: <span class=kt>new</span> <span class=nx>BackgroundManager</span><span class=p>(</span><span class=nx>config</span><span class=p>.</span><span class=nx>background_task</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// Skill-MCP 管理器 — 生命周期管理
+</span></span></span><span class=line><span class=cl>    <span class=nx>skillMcpManager</span>: <span class=kt>new</span> <span class=nx>SkillMcpManager</span><span class=p>(</span><span class=nx>config</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 配置处理器 — 6 阶段配置应用
+</span></span></span><span class=line><span class=cl>    <span class=nx>configHandler</span>: <span class=kt>new</span> <span class=nx>ConfigHandler</span><span class=p>(</span><span class=nx>config</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><h3 id=43-工具注册>4.3 工具注册</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// src/create-tools.ts
+</span></span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>createTools</span><span class=p>(</span><span class=nx>config</span>: <span class=kt>Config</span><span class=p>,</span> <span class=nx>managers</span>: <span class=kt>Managers</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>registry</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ToolRegistry</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// LSP 工具 (6 个)
+</span></span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_goto_definition&#39;</span><span class=p>,</span> <span class=nx>createLspGotoDefinition</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_find_references&#39;</span><span class=p>,</span> <span class=nx>createLspFindReferences</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_symbols&#39;</span><span class=p>,</span> <span class=nx>createLspSymbols</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_diagnostics&#39;</span><span class=p>,</span> <span class=nx>createLspDiagnostics</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_prepare_rename&#39;</span><span class=p>,</span> <span class=nx>createLspPrepareRename</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;lsp_rename&#39;</span><span class=p>,</span> <span class=nx>createLspRename</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 自定义工具
+</span></span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;task&#39;</span><span class=p>,</span> <span class=nx>createDelegateTaskTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;background_output&#39;</span><span class=p>,</span> <span class=nx>createBackgroundOutputTool</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;background_cancel&#39;</span><span class=p>,</span> <span class=nx>createBackgroundCancelTool</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;call_omo_agent&#39;</span><span class=p>,</span> <span class=nx>createCallOmoAgentTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;hashline_edit&#39;</span><span class=p>,</span> <span class=nx>createHashlineEditTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;look_at&#39;</span><span class=p>,</span> <span class=nx>createLookAtTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;skill&#39;</span><span class=p>,</span> <span class=nx>createSkillTool</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;skill_mcp&#39;</span><span class=p>,</span> <span class=nx>createSkillMcpTool</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;interactive_bash&#39;</span><span class=p>,</span> <span class=nx>createInteractiveBashTool</span><span class=p>(</span><span class=nx>managers</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 会话管理工具
+</span></span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;session_list&#39;</span><span class=p>,</span> <span class=nx>createSessionListTool</span><span class=p>(</span><span class=nx>ctx</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;session_read&#39;</span><span class=p>,</span> <span class=nx>createSessionReadTool</span><span class=p>(</span><span class=nx>ctx</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;session_search&#39;</span><span class=p>,</span> <span class=nx>createSessionSearchTool</span><span class=p>(</span><span class=nx>ctx</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;session_info&#39;</span><span class=p>,</span> <span class=nx>createSessionInfoTool</span><span class=p>(</span><span class=nx>ctx</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 搜索工具
+</span></span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;grep&#39;</span><span class=p>,</span> <span class=nx>createGrepTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;glob&#39;</span><span class=p>,</span> <span class=nx>createGlobTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;ast_grep_search&#39;</span><span class=p>,</span> <span class=nx>createAstGrepSearchTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=s1>&#39;ast_grep_replace&#39;</span><span class=p>,</span> <span class=nx>createAstGrepReplaceTool</span><span class=p>(</span><span class=nx>config</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>registry</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><h3 id=44-hook-组合>4.4 Hook 组合</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// src/create-hooks.ts
+</span></span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>createHooks</span><span class=p>(</span><span class=nx>config</span>: <span class=kt>Config</span><span class=p>,</span> <span class=nx>managers</span>: <span class=kt>Managers</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// === 10 个 OpenCode 钩子接口 ===
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>config</span>: <span class=kt>createConfigHandler</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>tool</span>: <span class=kt>createToolHandler</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;chat.message&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createChatMessageHook</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;chat.params&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createChatParamsHook</span><span class=p>(</span><span class=nx>config</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;chat.headers&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createChatHeadersHook</span><span class=p>(</span><span class=nx>config</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>event</span>: <span class=kt>createEventHook</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;tool.execute.before&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createToolBeforeHooks</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;tool.execute.after&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createToolAfterHooks</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;experimental.chat.messages.transform&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createTransformHooks</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;experimental.session.compacting&#39;</span><span class=p>]</span><span class=o>:</span> <span class=nx>createCompactingHook</span><span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>managers</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><hr><h2 id=5-与-opencode-的架构对比>5. 与 OpenCode 的架构对比</h2><table><thead><tr><th>维度</th><th>OpenCode</th><th>Oh-My-OpenAgent</th></tr></thead><tbody><tr><td>架构风格</td><td>单体式</td><td>插件装饰层</td></tr><tr><td>入口点</td><td>CLI/App</td><td><code>OhMyOpenCodePlugin()</code></td></tr><tr><td>依赖注入</td><td>Effect Layer</td><td>构造函数注入</td></tr><tr><td>配置验证</td><td>Zod</td><td>Zod v4 (27 个 Schema 文件)</td></tr><tr><td>工具注册</td><td>ToolRegistry Service</td><td>插件 ToolHandler</td></tr><tr><td>Hooks</td><td>基础 Plugin Hooks</td><td>52 个三层 Hook</td></tr><tr><td>持久化</td><td>SQLite + Drizzle</td><td>复用 OpenCode</td></tr><tr><td>通信</td><td>Session 消息</td><td>Hook 事件 + SDK</td></tr></tbody></table><hr><h2 id=6-核心文件索引>6. 核心文件索引</h2><table><thead><tr><th>文件</th><th>行数</th><th>职责</th></tr></thead><tbody><tr><td><code>src/index.ts</code></td><td>—</td><td>插件入口，5 步初始化</td></tr><tr><td><code>src/plugin-config.ts</code></td><td>—</td><td>多层配置加载</td></tr><tr><td><code>src/create-hooks.ts</code></td><td>—</td><td>52 个 Hook 组合</td></tr><tr><td><code>src/create-managers.ts</code></td><td>—</td><td>管理器实例化</td></tr><tr><td><code>src/create-tools.ts</code></td><td>—</td><td>工具注册入口</td></tr><tr><td><code>src/plugin/tool-registry.ts</code></td><td>—</td><td>工具注册表实现</td></tr><tr><td><code>src/plugin-handlers/config-handler.ts</code></td><td>—</td><td>6 阶段配置处理</td></tr></tbody></table><hr><p><em>文档版本：v1.0 | 更新：2026-04-06</em></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2026-04-06</span></div><div id=page-views class=post-info-mod></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=x data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程"><i class="fab fa-x-twitter" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Threads" data-sharer=threads data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程"><i class="fab fa-threads" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/><i class="fab fa-facebook-square" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程"><i class="fab fa-hacker-news" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程"><i class="fab fa-weibo" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Diaspora" data-sharer=diaspora data-url=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/ data-title="架构概览 — 插件架构与初始化流程" data-description><i class="fab fa-diaspora" aria-hidden=true></i></a><a href="https://t.me/share/url?url=https%3a%2f%2ftornado404.github.io%2fposts%2fomo-code-read%2f01-architecture-overview%2f&amp;text=%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88%20%e2%80%94%20%e6%8f%92%e4%bb%b6%e6%9e%b6%e6%9e%84%e4%b8%8e%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b5%81%e7%a8%8b" target=_blank title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/omo-code-read/04-lifecycle-hooks/ class=prev rel=prev title="生命周期钩子 — 52 个 Hook 的三层架构"><i class="fas fa-angle-left" aria-hidden=true></i>生命周期钩子 — 52 个 Hook 的三层架构</a>
+<a href=/posts/opencode-read/01-architecture-overview/ class=next rel=next title="架构概览 — Turborepo Monorepo 与核心模块">架构概览 — Turborepo Monorepo 与核心模块<i class="fas fa-angle-right" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.159.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright" aria-hidden=true></i><span itemprop=copyrightYear>2018 - 2026</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>xxxx</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span><span class=icp-splitter>&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a rel="license external nofollow noopener noreffer" href=https://beian.miit.gov.cn/ target=_blank>京ICP备2022005236号-2</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up" aria-hidden=true></i></a></div><div id=fixed-buttons-hidden><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment" aria-hidden=true></i></a></div><link rel=stylesheet href=/css/custom.5e3a466a7db6fe3c8eae7b92d6e54551a97a1e72b5a2aeb293081a8301d4ee11.css integrity="sha256-XjpGan22/jyOrnuS1uVFUal6HnK1oq6ykwgagwHU7hE="><script src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js></script><script src=/lib/lunr/lunr.stemmer.support.min.8127f0ca4cabc7246f3620f3ef3bf9b1db02805dfe03d6d4c57bc74bc0bf6eea.js integrity="sha256-gSfwykyrxyRvNiDz7zv5sdsCgF3+A9bUxXvHS8C/buo="></script><script src=/lib/lunr/lunr.zh.min.825fab54c26891370cbd3df4cdff5c9de31af8bb84474e6774573463d8708ae7.js integrity="sha256-gl+rVMJokTcMvT30zf9cneMa+LuER05ndFc0Y9hwiuc="></script><script src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js></script><script>window.config={comment:{},search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:30,type:"lunr"}}</script><script src=/js/theme.f476c0bc5b2317256a171c0c0b8081135972446d5999890c685ea5c9cf95d034.js integrity="sha256-9HbAvFsjFyVqFxwMC4CBE1lyRG1ZmYkMaF6lyc+V0DQ="></script><script>var dnt,doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FL23FNP7CM")}</script><script src="https://www.googletagmanager.com/gtag/js?id=G-FL23FNP7CM" async></script><script>var _hmt=_hmt||[];(function(){var e,t=document.createElement("script");t.src="https://hm.baidu.com/hm.js?4b7c98449a6edf8492a8f3404e6d06a0",e=document.getElementsByTagName("script")[0],e.parentNode.insertBefore(t,e)})()</script></body></html>

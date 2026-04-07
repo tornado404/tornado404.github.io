@@ -1,0 +1,301 @@
+<!doctype html><html lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>架构概览 — Turborepo Monorepo 与核心模块 -</title><meta name=Description content="观海听涛是钟子期的技术分享博客。内容涵盖云原生、Golang、Kubernetes、Docker相关的研究与知识分享。"><meta property="og:url" content="https://tornado404.github.io/posts/opencode-read/01-architecture-overview/"><meta property="og:site_name" content="钟子期的个人博客"><meta property="og:title" content="架构概览 — Turborepo Monorepo 与核心模块"><meta property="og:description" content="架构概览 — Turborepo Monorepo 与核心模块 源码路径：/mnt/e/code/cc/opencode/packages/opencode/src/ 核心文件：agent/agent.ts, tool/tool.ts, session/, config/config.ts 技术栈：Bun + TypeScript (strict) + Effect + Drizzle ORM + SQLite"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-04-06T00:00:00+00:00"><meta property="article:modified_time" content="2026-04-06T00:00:00+00:00"><meta property="og:image" content="https://tornado404.github.io/img/jinx.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://tornado404.github.io/img/jinx.png"><meta name=twitter:title content="架构概览 — Turborepo Monorepo 与核心模块"><meta name=twitter:description content="架构概览 — Turborepo Monorepo 与核心模块 源码路径：/mnt/e/code/cc/opencode/packages/opencode/src/ 核心文件：agent/agent.ts, tool/tool.ts, session/, config/config.ts 技术栈：Bun + TypeScript (strict) + Effect + Drizzle ORM + SQLite"><meta name=application-name content="观海听涛"><meta name=apple-mobile-web-app-title content="观海听涛"><meta name=referrer content="no-referrer"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/><link rel=prev href=https://tornado404.github.io/posts/omo-code-read/01-architecture-overview/><link rel=next href=https://tornado404.github.io/posts/opencode-read/10-permission-security/><link rel=stylesheet href=/css/style.min.69591820d07f895ba30cf787cbd90a858a6409464fdbf41d89a979744dc5b628.css integrity="sha256-aVkYINB/iVujDPeHy9kKhYpkCUZP2/Qdial5dE3Ftig="><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"架构概览 — Turborepo Monorepo 与核心模块","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/tornado404.github.io\/posts\/opencode-read\/01-architecture-overview\/"},"image":["https:\/\/tornado404.github.io\/img\/jinx.png"],"genre":"posts","wordcount":3764,"url":"https:\/\/tornado404.github.io\/posts\/opencode-read\/01-architecture-overview\/","datePublished":"2026-04-06T00:00:00+00:00","dateModified":"2026-04-06T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"xxxx"},"description":""}</script></head><body data-header-desktop=normal data-header-mobile=auto><script>const query=window.matchMedia("(prefers-color-scheme: dark)");function applyTheme(){let e=window.localStorage?.getItem("theme")||"auto",t=e==="dark"||e==="auto"&&query.matches;document.body.setAttribute("theme",t?"dark":"light"),document.body.setAttribute("cfg-theme",e)}applyTheme(),query.addEventListener("change",applyTheme)</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title>AI缝纫机</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/ title=回到首页>首页 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/ title=关于>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-spin" aria-hidden=true></i>
+</span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title>AI缝纫机</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/ title=回到首页>首页</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/about/ title=关于>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><div class=back-to-section><a href=/posts/ class=back-btn><i class="fas fa-chevron-left" aria-hidden=true></i>&nbsp;返回专栏：Posts</a></div><h1 class="single-title animate__animated animate__flipInX">架构概览 — Turborepo Monorepo 与核心模块</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle" aria-hidden=true></i>xxxx</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt" aria-hidden=true></i>&nbsp;<time datetime=2026-04-06>2026-04-06</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden=true></i>&nbsp;约 3764 字&nbsp;
+<i class="far fa-clock" aria-hidden=true></i>&nbsp;预计阅读 8 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-概述>1. 概述</a></li><li><a href=#2-核心包详解>2. 核心包详解</a><ul><li><a href=#21-packagesopencode--核心引擎>2.1 packages/opencode — 核心引擎</a></li><li><a href=#22-packagesextensions--zed-扩展>2.2 packages/extensions — Zed 扩展</a></li><li><a href=#23-packagessdk--外部-sdk>2.3 packages/sdk — 外部 SDK</a></li><li><a href=#24-packagesapp--web-ui>2.4 packages/app — Web UI</a></li></ul></li><li><a href=#3-技术栈分析>3. 技术栈分析</a><ul><li><a href=#31-effect--核心函数式框架>3.1 Effect — 核心函数式框架</a></li><li><a href=#32-ai-sdk--模型抽象层>3.2 AI SDK — 模型抽象层</a></li><li><a href=#33-drizzle-orm--sqlite--持久化>3.3 Drizzle ORM + SQLite — 持久化</a></li><li><a href=#34-hono--http-服务器>3.4 Hono — HTTP 服务器</a></li></ul></li><li><a href=#4-架构分层>4. 架构分层</a></li><li><a href=#5-核心类型体系>5. 核心类型体系</a><ul><li><a href=#51-agent-定义>5.1 Agent 定义</a></li><li><a href=#52-tool-定义>5.2 Tool 定义</a></li><li><a href=#53-session-定义>5.3 Session 定义</a></li></ul></li><li><a href=#6-与-claude-code-架构对比>6. 与 Claude Code 架构对比</a></li><li><a href=#7-核心文件索引>7. 核心文件索引</a></li></ul></nav></div></div><div class=content id=content><h1 id=架构概览--turborepo-monorepo-与核心模块>架构概览 — Turborepo Monorepo 与核心模块</h1><blockquote><p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/</code>
+核心文件：<code>agent/agent.ts</code>, <code>tool/tool.ts</code>, <code>session/</code>, <code>config/config.ts</code>
+技术栈：Bun + TypeScript (strict) + Effect + Drizzle ORM + SQLite</p></blockquote><hr><h2 id=1-概述>1. 概述</h2><p>OpenCode 采用了与 Claude Code 截然不同的架构策略：<strong>Turborepo Monorepo</strong>。整个项目拆分为 30+ 个独立包，各司其职，通过 <code>turbo.json</code> 管理构建依赖。这种架构的优势在于模块边界清晰、发布灵活，但同时也带来了更高的复杂度。</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><pre tabindex=0><code>/
+├── packages/
+│   ├── opencode/         # 核心引擎（最重要的包）
+│   │   └── src/
+│   │       ├── agent/    # Agent 定义与生命周期
+│   │       ├── tool/     # 工具注册与执行
+│   │       ├── session/  # 会话管理、消息处理
+│   │       ├── command/  # Slash 命令系统
+│   │       ├── config/   # 多层配置系统
+│   │       ├── permission/  # 权限模型
+│   │       ├── mcp/      # MCP 客户端
+│   │       ├── provider/ # AI 模型提供商
+│   │       ├── plugin/   # 插件钩子系统
+│   │       ├── skill/    # Skill 发现与加载
+│   │       ├── ide/      # IDE 检测与集成
+│   │       ├── server/   # HTTP RPC 服务器
+│   │       ├── bus/      # 事件总线
+│   │       ├── storage/  # SQLite + Drizzle ORM
+│   │       ├── effect/   # Effect 运行时封装
+│   │       ├── acp/      # Agent Client Protocol
+│   │       ├── lsp/      # Language Server Protocol
+│   │       └── ...
+│   ├── app/              # Web UI / TUI 前端
+│   ├── console/          # CLI 入口
+│   ├── desktop/          # 桌面应用封装
+│   ├── desktop-electron/ # Electron 封装
+│   ├── sdk/              # 外部 SDK (JS)
+│   ├── sdks/             # VS Code SDK 等
+│   ├── extensions/       # Zed 扩展定义
+│   ├── ui/               # 共享 UI 组件库
+│   ├── util/             # 共享工具库
+│   └── ...
+├── install/              # 安装脚本
+├── infra/                # 基础设施配置
+└── nix/                  # Nix 包定义</code></pre></div><hr><h2 id=2-核心包详解>2. 核心包详解</h2><h3 id=21-packagesopencode--核心引擎>2.1 packages/opencode — 核心引擎</h3><p>这是最重要的包，所有核心逻辑都在 <code>packages/opencode/src/</code> 下：</p><div class="code-block code-line-numbers" style="counter-reset:code-block 0"><div class="code-header language-"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><pre tabindex=0><code>opencode/src/
+├── agent/
+│   ├── agent.ts          # Agent 定义类型 + Service 实现 (~420 行)
+│   ├── generate.txt       # Agent 动态生成提示词
+│   └── prompt/            # Agent 级专用提示词
+│       ├── compaction.txt # 上下文压缩提示
+│       ├── explore.txt    # 探索 Agent 提示
+│       ├── summary.txt    # 总结提示
+│       └── title.txt      # 会话标题生成提示
+├── tool/
+│   ├── tool.ts            # 工具核心类型定义 (~112 行)
+│   ├── registry.ts        # 工具注册中心 (~265 行)
+│   ├── truncate.ts        # 输出截断服务
+│   ├── schema.ts          # 工具 ID Schema
+│   ├── bash.ts            # Bash 执行工具
+│   ├── read.ts            # 文件读取工具
+│   ├── write.ts           # 文件写入工具
+│   ├── edit.ts            # 文件编辑工具 (高级模糊匹配)
+│   ├── glob.ts            # 文件模式匹配
+│   ├── grep.ts            # 正则搜索
+│   ├── task.ts            # 子 Agent / 任务工具
+│   ├── batch.ts           # 批量执行工具
+│   ├── skill.ts           # Skill 调用
+│   ├── lsp.ts             # LSP 集成
+│   ├── multiedit.ts       # 多重编辑
+│   ├── apply_patch.ts     # Patch 应用
+│   └── ...
+├── session/
+│   ├── prompt.ts          # 会话提示词解析 (~1,908 行)
+│   ├── processor.ts       # LLM 事件处理 (~523 行)
+│   ├── llm.ts             # LLM 流式接口 (~358 行)
+│   ├── system.ts          # 系统提示词选择
+│   ├── retry.ts           # 重试策略
+│   ├── prompt/            # Provider 级系统提示词
+│   │   ├── anthropic.txt  # Claude 模型
+│   │   ├── beast.txt      # GPT-4/o1/o3
+│   │   ├── gpt.txt        # 普通 GPT
+│   │   ├── gemini.txt     # Gemini
+│   │   ├── codex.txt      # GitHub Copilot
+│   │   ├── kimi.txt       # Kimi
+│   │   ├── trinity.txt    # Trinity
+│   │   ├── default.txt    # 默认兜底
+│   │   └── ...
+│   └── compaction.ts     # 上下文压缩
+├── config/
+│   ├── config.ts          # 主配置 Schema + 加载 (~849+ 行)
+│   ├── tui.ts             # TUI 特定配置
+│   ├── paths.ts           # 路径解析 + JSONC 支持
+│   └── ...
+├── permission/
+│   └── index.ts           # Ruleset 权限模型
+├── mcp/
+│   └── index.ts           # MCP 客户端实现
+├── provider/
+│   └── index.ts           # 20+ AI 模型提供商
+├── command/
+│   └── index.ts           # 命令定义与加载
+├── plugin/
+│   └── index.ts           # 插件钩子系统
+├── skill/
+│   └── index.ts           # Skill 发现与加载
+├── ide/
+│   └── index.ts           # IDE 检测 (VS Code, Cursor, Zed...)
+├── acp/
+│   ├── agent.ts           # ACP Agent 接口
+│   ├── session.ts         # ACP 会话管理
+│   └── types.ts           # ACP 类型定义
+├── server/
+│   └── index.ts           # Hono HTTP 服务器
+├── bus/
+│   └── index.ts           # 事件总线
+├── storage/
+│   └── index.ts           # SQLite + Drizzle ORM
+├── effect/
+│   └── index.ts           # Effect 运行时封装
+├── lsp/
+│   └── index.ts           # LSP 客户端实现
+├── project/
+│   └── index.ts           # 项目发现
+├── auth/
+│   └── index.ts           # 认证系统
+├── filesystem/
+│   └── index.ts           # 文件系统封装
+└── ...</code></pre></div><h3 id=22-packagesextensions--zed-扩展>2.2 packages/extensions — Zed 扩展</h3><p>Zed 编辑器的扩展定义，使用 TOML 配置：</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-toml"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=c># packages/extensions/zed/extension.toml</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>extension</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;opencode&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>agent_server</span> <span class=p>=</span> <span class=s2>&#34;opencode&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>platform</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=nx>os</span> <span class=p>=</span> <span class=s2>&#34;macos&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>arch</span> <span class=p>=</span> <span class=s2>&#34;arm64&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>platform</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=nx>os</span> <span class=p>=</span> <span class=s2>&#34;macos&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>arch</span> <span class=p>=</span> <span class=s2>&#34;x86_64&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span></span></span></code></pre></div></div><p>通过 <code>opencode acp</code> 命令启动 ACP 服务器，Zed 通过 stdio 双向通信。</p><h3 id=23-packagessdk--外部-sdk>2.3 packages/sdk — 外部 SDK</h3><p>提供 HTTP API 客户端，支持目录头注入：</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>client</span> <span class=o>=</span> <span class=nx>createOpencodeClient</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>baseUrl</span><span class=o>:</span> <span class=sb>`http://</span><span class=si>${</span><span class=nx>hostname</span><span class=si>}</span><span class=sb>:</span><span class=si>${</span><span class=nx>port</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>directory</span>: <span class=kt>cwd</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span></span></span></code></pre></div></div><h3 id=24-packagesapp--web-ui>2.4 packages/app — Web UI</h3><p>基于 Vite + TypeScript 的前端应用，提供 Web 界面。</p><hr><h2 id=3-技术栈分析>3. 技术栈分析</h2><h3 id=31-effect--核心函数式框架>3.1 Effect — 核心函数式框架</h3><p>OpenCode 几乎所有服务都基于 <strong>Effect</strong> 框架构建。Effect 是 Scala ZIO 的 TypeScript 实现，提供：</p><ul><li><strong>代数效应 (Algebraic Effects)</strong> — 用 <code>Effect&lt;S, E, A></code> 表示可能失败和并发的计算</li><li><strong>服务模式 (Service Pattern)</strong> — 通过 <code>Service.of()</code> 定义接口，通过 <code>Layer</code> 组合依赖</li><li><strong>Fiber 并发</strong> — 轻量级协程，支持结构化并发</li><li><strong>资源管理</strong> — <code>addFinalizer</code> 自动清理</li></ul><p>这与 Claude Code 使用 <code>AsyncLocalStorage</code> 的方式形成鲜明对比。Effect 的优势在于类型安全的依赖注入和组合，劣势是学习曲线较陡。</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// OpenCode 的 Service 定义模式
+</span></span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>layer</span>: <span class=kt>Layer.Layer</span><span class=p>&lt;</span><span class=nt>Service</span><span class=p>,</span> <span class=na>never</span><span class=p>,</span> <span class=na>Config.Service</span> <span class=err>|</span> <span class=na>Auth.Service</span> <span class=err>|</span> <span class=na>...</span><span class=p>&gt;</span> <span class=o>=</span>
+</span></span><span class=line><span class=cl>  <span class=nx>Layer</span><span class=p>.</span><span class=nx>effect</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Service</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Effect</span><span class=p>.</span><span class=nx>gen</span><span class=p>(</span><span class=kd>function</span><span class=o>*</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>config</span> <span class=o>=</span> <span class=k>yield</span><span class=o>*</span> <span class=nx>Config</span><span class=p>.</span><span class=nx>Service</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>auth</span> <span class=o>=</span> <span class=k>yield</span><span class=o>*</span> <span class=nx>Auth</span><span class=p>.</span><span class=nx>Service</span>
+</span></span><span class=line><span class=cl>      <span class=c1>// ...
+</span></span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>Service</span><span class=p>.</span><span class=k>of</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>        <span class=kr>get</span><span class=o>:</span> <span class=nx>Effect</span><span class=p>.</span><span class=nx>fn</span><span class=p>(</span><span class=s2>&#34;Agent.get&#34;</span><span class=p>)(</span><span class=kd>function</span><span class=o>*</span> <span class=p>(</span><span class=nx>name</span>: <span class=kt>string</span><span class=p>)</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}),</span>
+</span></span><span class=line><span class=cl>        <span class=nx>list</span>: <span class=kt>Effect.fn</span><span class=p>(</span><span class=s2>&#34;Agent.list&#34;</span><span class=p>)(</span><span class=kd>function</span><span class=o>*</span> <span class=p>()</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}),</span>
+</span></span><span class=line><span class=cl>      <span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=p>}),</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span></span></span></code></pre></div></div><h3 id=32-ai-sdk--模型抽象层>3.2 AI SDK — 模型抽象层</h3><p>OpenCode 使用 Vercel 的 <strong>AI SDK</strong> 作为 LLM 调用层：</p><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>streamText</span><span class=p>,</span> <span class=nx>generateObject</span> <span class=p>}</span> <span class=kr>from</span> <span class=s1>&#39;ai&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>wrapLanguageModel</span> <span class=p>}</span> <span class=kr>from</span> <span class=s1>&#39;ai-provider-openai&#39;</span> <span class=c1>// 或其他 provider
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>return</span> <span class=nx>streamText</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>model</span>: <span class=kt>wrapLanguageModel</span><span class=p>({</span> <span class=p>...</span> <span class=p>}),</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tools</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>maxOutputTokens</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>abortSignal</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>messages</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span></span></span></code></pre></div></div><p>AI SDK 提供了 provider 无关的流式接口，OpenCode 通过 <code>provider/</code> 包支持 20+ 模型（Anthropic、OpenAI、Azure、Google、AWS 等）。</p><h3 id=33-drizzle-orm--sqlite--持久化>3.3 Drizzle ORM + SQLite — 持久化</h3><p>会话消息使用 Drizzle ORM 存储在 SQLite 中：</p><ul><li><strong>WAL 模式</strong> — 支持并发读写</li><li><strong>迁移系统</strong> — 带时间戳的版本化管理</li><li><strong>规范化存储</strong> — <code>MessageTable</code> + <code>PartTable</code> 分离</li></ul><h3 id=34-hono--http-服务器>3.4 Hono — HTTP 服务器</h3><p>轻量级高性能 Web 框架，用于 RPC 和 API 端点。</p><hr><h2 id=4-架构分层>4. 架构分层</h2><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><pre tabindex=0><code>┌──────────────────────────────────────────────────────────────────┐
+│                         User Interface                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────┐  │
+│  │  CLI / TUI   │  │  Web UI     │  │  VS Code SDK │  │  Zed │  │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └──┬───┘  │
+└─────────┼─────────────────┼─────────────────┼─────────────┼──────┘
+          │                 │                 │             │
+          └─────────────────┴────────┬────────┴─────────────┘
+                                     │ HTTP / ACP / stdio
+┌─────────────────────────────────────┴──────────────────────────────┐
+│                     packages/opencode/src/                         │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────────┐   │
+│  │                      Server Layer                          │   │
+│  │  HTTP RPC (Hono) + WebSocket + ACP Protocol Handler        │   │
+│  └────────────────────────────────────────────────────────────┘   │
+│                              │                                     │
+│  ┌────────────────────────────────────────────────────────────┐   │
+│  │                    Session Layer                            │   │
+│  │  SessionPrompt / SessionProcessor / LLM Stream / Compaction │   │
+│  └────────────────────────────────────────────────────────────┘   │
+│                              │                                     │
+│  ┌────────────────────────────────────────────────────────────┐   │
+│  │                     Agent Layer                             │   │
+│  │  Agent Service / Tool Registry / Permission / MCP           │   │
+│  └────────────────────────────────────────────────────────────┘   │
+│                              │                                     │
+│  ┌────────────────────────────────────────────────────────────┐   │
+│  │                   Tool Execution Layer                      │   │
+│  │  Bash / Read / Write / Edit / Glob / Grep / LSP / ...      │   │
+│  └────────────────────────────────────────────────────────────┘   │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────────┐   │
+│  │                  Infrastructure Layer                       │   │
+│  │  Effect Runtime / Config / Storage / Auth / Event Bus      │   │
+│  └────────────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────────┘</code></pre></div><hr><h2 id=5-核心类型体系>5. 核心类型体系</h2><h3 id=51-agent-定义>5.1 Agent 定义</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// packages/opencode/src/agent/agent.ts
+</span></span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>namespace</span> <span class=nx>Agent</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>export</span> <span class=kr>const</span> <span class=nx>Info</span> <span class=o>=</span> <span class=nx>z</span><span class=p>.</span><span class=kt>object</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span>: <span class=kt>z.string</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>description</span>: <span class=kt>z.string</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>mode</span>: <span class=kt>z.enum</span><span class=p>([</span><span class=s2>&#34;subagent&#34;</span><span class=p>,</span> <span class=s2>&#34;primary&#34;</span><span class=p>,</span> <span class=s2>&#34;all&#34;</span><span class=p>]),</span>  <span class=c1>// Agent 角色
+</span></span></span><span class=line><span class=cl>    <span class=nx>native</span>: <span class=kt>z.boolean</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>hidden</span>: <span class=kt>z.boolean</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>topP</span>: <span class=kt>z.number</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>temperature</span>: <span class=kt>z.number</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>color</span>: <span class=kt>z.string</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>permission</span>: <span class=kt>Permission.Ruleset</span><span class=p>,</span>  <span class=c1>// 权限规则集
+</span></span></span><span class=line><span class=cl>    <span class=nx>model</span>: <span class=kt>z.object</span><span class=p>({</span> <span class=nx>modelID</span>: <span class=kt>ModelID.zod</span><span class=p>,</span> <span class=nx>providerID</span>: <span class=kt>ProviderID.zod</span> <span class=p>}).</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>variant</span>: <span class=kt>z.string</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>prompt</span>: <span class=kt>z.string</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>    <span class=c1>// 自定义系统提示
+</span></span></span><span class=line><span class=cl>    <span class=nx>options</span>: <span class=kt>z.record</span><span class=p>(</span><span class=nx>z</span><span class=p>.</span><span class=kt>string</span><span class=p>(),</span> <span class=nx>z</span><span class=p>.</span><span class=kt>any</span><span class=p>()),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>steps</span>: <span class=kt>z.number</span><span class=p>().</span><span class=nx>int</span><span class=p>().</span><span class=nx>positive</span><span class=p>().</span><span class=nx>optional</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>export</span> <span class=kr>interface</span> <span class=nx>Interface</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>readonly</span> <span class=kr>get</span><span class=o>:</span> <span class=p>(</span><span class=nx>agent</span>: <span class=kt>string</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>Effect</span><span class=p>.</span><span class=nx>Effect</span><span class=p>&lt;</span><span class=nt>Agent.Info</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=kr>readonly</span> <span class=nx>list</span><span class=o>:</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>Effect</span><span class=p>.</span><span class=nx>Effect</span><span class=p>&lt;</span><span class=nt>Agent.Info</span><span class=err>[]</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=kr>readonly</span> <span class=nx>defaultAgent</span><span class=o>:</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>Effect</span><span class=p>.</span><span class=nx>Effect</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=kr>readonly</span> <span class=nx>generate</span><span class=o>:</span> <span class=p>(</span><span class=nx>input</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>description</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>      <span class=nx>model</span><span class=o>?:</span> <span class=p>{</span> <span class=nx>providerID</span>: <span class=kt>ProviderID</span><span class=p>;</span> <span class=nx>modelID</span>: <span class=kt>ModelID</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span> <span class=o>=&gt;</span> <span class=nx>Effect</span><span class=p>.</span><span class=nx>Effect</span><span class=o>&lt;</span><span class=p>{</span> <span class=nx>identifier</span>: <span class=kt>string</span><span class=p>;</span> <span class=nx>whenToUse</span>: <span class=kt>string</span><span class=p>;</span> <span class=nx>systemPrompt</span>: <span class=kt>string</span> <span class=p>}</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><h3 id=52-tool-定义>5.2 Tool 定义</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// packages/opencode/src/tool/tool.ts
+</span></span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>namespace</span> <span class=nx>Tool</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>export</span> <span class=kr>interface</span> <span class=nx>Context</span><span class=p>&lt;</span><span class=nt>M</span> <span class=na>extends</span> <span class=na>Metadata </span><span class=o>=</span> <span class=na>Metadata</span><span class=p>&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>sessionID</span>: <span class=kt>SessionID</span>
+</span></span><span class=line><span class=cl>    <span class=nx>messageID</span>: <span class=kt>MessageID</span>
+</span></span><span class=line><span class=cl>    <span class=nx>agent</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>    <span class=nx>abort</span>: <span class=kt>AbortSignal</span>
+</span></span><span class=line><span class=cl>    <span class=nx>callID?</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>    <span class=nx>extra</span><span class=o>?:</span> <span class=p>{</span> <span class=p>[</span><span class=nx>key</span>: <span class=kt>string</span><span class=p>]</span><span class=o>:</span> <span class=kt>any</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>messages</span>: <span class=kt>MessageV2.WithParts</span><span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>metadata</span><span class=p>(</span><span class=nx>input</span><span class=o>:</span> <span class=p>{</span> <span class=nx>title?</span>: <span class=kt>string</span><span class=p>;</span> <span class=nx>metadata?</span>: <span class=kt>M</span> <span class=p>})</span><span class=o>:</span> <span class=k>void</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ask</span><span class=p>(</span><span class=nx>input</span>: <span class=kt>Omit</span><span class=p>&lt;</span><span class=nt>Permission.Request</span><span class=p>,</span> <span class=s2>&#34;id&#34;</span> <span class=err>|</span> <span class=s2>&#34;sessionID&#34;</span> <span class=err>|</span> <span class=s2>&#34;tool&#34;</span><span class=p>&gt;)</span><span class=o>:</span> <span class=nx>Promise</span><span class=p>&lt;</span><span class=nt>void</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>export</span> <span class=kr>interface</span> <span class=nx>Def</span><span class=p>&lt;</span><span class=nt>Parameters</span> <span class=na>extends</span> <span class=na>z.ZodType</span> <span class=err>=</span> <span class=na>z.ZodType</span><span class=p>,</span> <span class=na>M</span> <span class=na>extends</span> <span class=na>Metadata </span><span class=o>=</span> <span class=na>Metadata</span><span class=p>&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>description</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>    <span class=nx>parameters</span>: <span class=kt>Parameters</span>
+</span></span><span class=line><span class=cl>    <span class=nx>execute</span><span class=p>(</span><span class=nx>args</span>: <span class=kt>z.infer</span><span class=p>&lt;</span><span class=nt>Parameters</span><span class=p>&gt;,</span> <span class=nx>ctx</span>: <span class=kt>Context</span><span class=p>)</span><span class=o>:</span> <span class=nx>Promise</span><span class=o>&lt;</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>title</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>      <span class=nx>metadata</span>: <span class=kt>M</span>
+</span></span><span class=line><span class=cl>      <span class=nx>output</span>: <span class=kt>string</span>
+</span></span><span class=line><span class=cl>      <span class=nx>attachments?</span>: <span class=kt>Omit</span><span class=p>&lt;</span><span class=nt>MessageV2.FilePart</span><span class=p>,</span> <span class=s2>&#34;id&#34;</span> <span class=err>|</span> <span class=s2>&#34;sessionID&#34;</span> <span class=err>|</span> <span class=s2>&#34;messageID&#34;</span><span class=p>&gt;[]</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>formatValidationError</span><span class=o>?</span><span class=p>(</span><span class=nx>error</span>: <span class=kt>z.ZodError</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>export</span> <span class=kd>function</span> <span class=nx>define</span><span class=p>&lt;</span><span class=nt>...</span><span class=p>&gt;(</span><span class=nx>id</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>init</span>: <span class=kt>...</span><span class=p>)</span><span class=o>:</span> <span class=nx>Info</span><span class=p>&lt;</span><span class=nt>...</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><h3 id=53-session-定义>5.3 Session 定义</h3><div class="code-block code-line-numbers open" style="counter-reset:code-block 0"><div class="code-header language-typescript"><span class=code-title><i class="arrow fas fa-angle-right" aria-hidden=true></i></span>
+<span class=ellipses><i class="fas fa-ellipsis-h" aria-hidden=true></i></span>
+<span class=copy title=复制到剪贴板><i class="far fa-copy" aria-hidden=true></i></span></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// Session 核心信息
+</span></span></span><span class=line><span class=cl><span class=nx>Session</span><span class=p>.</span><span class=nx>Info</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>id</span>: <span class=kt>SessionID</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>slug</span>: <span class=kt>string</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>projectID</span>: <span class=kt>ProjectID</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>directory</span>: <span class=kt>string</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>parentID?</span>: <span class=kt>SessionID</span><span class=p>,</span>    <span class=c1>// 父会话（用于 Task 子 Agent）
+</span></span></span><span class=line><span class=cl>  <span class=nx>title</span>: <span class=kt>string</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>summary</span><span class=o>?:</span> <span class=p>{</span> <span class=nx>additions</span><span class=p>,</span> <span class=nx>deletions</span><span class=p>,</span> <span class=nx>files</span><span class=p>,</span> <span class=nx>diffs</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>share</span><span class=o>?:</span> <span class=p>{</span> <span class=nx>url</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>time</span><span class=o>:</span> <span class=p>{</span> <span class=nx>created</span><span class=p>,</span> <span class=nx>updated</span><span class=p>,</span> <span class=nx>compacting</span><span class=p>,</span> <span class=nx>archived</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Message 类型
+</span></span></span><span class=line><span class=cl><span class=kr>type</span> <span class=nx>MessageV2</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>id</span>: <span class=kt>MessageID</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sessionID</span>: <span class=kt>SessionID</span>
+</span></span><span class=line><span class=cl>  <span class=nx>role</span><span class=o>:</span> <span class=s2>&#34;user&#34;</span> <span class=o>|</span> <span class=s2>&#34;assistant&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>parts</span><span class=o>:</span> <span class=p>(</span><span class=nx>TextPart</span> <span class=o>|</span> <span class=nx>ToolPart</span> <span class=o>|</span> <span class=nx>ReasoningPart</span> <span class=o>|</span> <span class=nx>PatchPart</span> <span class=o>|</span> <span class=nx>FilePart</span><span class=p>)[]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>time</span><span class=o>:</span> <span class=p>{</span> <span class=nx>created</span>: <span class=kt>number</span><span class=p>;</span> <span class=nx>updated</span>: <span class=kt>number</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><hr><h2 id=6-与-claude-code-架构对比>6. 与 Claude Code 架构对比</h2><table><thead><tr><th>维度</th><th>Claude Code</th><th>OpenCode</th></tr></thead><tbody><tr><td>组织结构</td><td>单仓库</td><td>Turborepo 30+ 包</td></tr><tr><td>核心框架</td><td>Bun + AsyncLocalStorage</td><td>Bun + Effect</td></tr><tr><td>依赖注入</td><td>隐式（闭包 + 参数传递）</td><td>显式（Layer + Service）</td></tr><tr><td>消息存储</td><td>文件系统转录本</td><td>SQLite + Drizzle ORM</td></tr><tr><td>配置</td><td>TOML 单文件</td><td>JSONC 多层合并</td></tr><tr><td>AI SDK</td><td>底层直接调用 API</td><td>Vercel AI SDK 封装</td></tr><tr><td>协议层</td><td>无专门的外部协议</td><td>ACP (Agent Client Protocol)</td></tr><tr><td>发布方式</td><td>npm 全局包</td><td>Monorepo 多包发布</td></tr></tbody></table><hr><h2 id=7-核心文件索引>7. 核心文件索引</h2><table><thead><tr><th>文件</th><th>行数</th><th>职责</th></tr></thead><tbody><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td>~420</td><td>Agent 类型定义 + Service 实现</td></tr><tr><td><code>packages/opencode/src/tool/tool.ts</code></td><td>~112</td><td>Tool 核心类型 + wrap 函数</td></tr><tr><td><code>packages/opencode/src/tool/registry.ts</code></td><td>~265</td><td>工具注册中心</td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td>~1,908</td><td>会话提示词 + 生成循环</td></tr><tr><td><code>packages/opencode/src/session/processor.ts</code></td><td>~523</td><td>LLM 事件处理器</td></tr><tr><td><code>packages/opencode/src/session/llm.ts</code></td><td>~358</td><td>LLM 流式接口</td></tr><tr><td><code>packages/opencode/src/config/config.ts</code></td><td>~849+</td><td>配置 Schema + 加载</td></tr><tr><td><code>packages/opencode/src/permission/index.ts</code></td><td>—</td><td>权限 Ruleset 模型</td></tr></tbody></table><hr><p><em>文档版本：v1.0 | 更新：2026-04-06</em></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2026-04-06</span></div><div id=page-views class=post-info-mod></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=x data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块"><i class="fab fa-x-twitter" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Threads" data-sharer=threads data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块"><i class="fab fa-threads" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/><i class="fab fa-facebook-square" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块"><i class="fab fa-hacker-news" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块"><i class="fab fa-weibo" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Diaspora" data-sharer=diaspora data-url=https://tornado404.github.io/posts/opencode-read/01-architecture-overview/ data-title="架构概览 — Turborepo Monorepo 与核心模块" data-description><i class="fab fa-diaspora" aria-hidden=true></i></a><a href="https://t.me/share/url?url=https%3a%2f%2ftornado404.github.io%2fposts%2fopencode-read%2f01-architecture-overview%2f&amp;text=%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88%20%e2%80%94%20Turborepo%20Monorepo%20%e4%b8%8e%e6%a0%b8%e5%bf%83%e6%a8%a1%e5%9d%97" target=_blank title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/omo-code-read/01-architecture-overview/ class=prev rel=prev title="架构概览 — 插件架构与初始化流程"><i class="fas fa-angle-left" aria-hidden=true></i>架构概览 — 插件架构与初始化流程</a>
+<a href=/posts/opencode-read/10-permission-security/ class=next rel=next title="权限与安全 — Ruleset 驱动的细粒度控制">权限与安全 — Ruleset 驱动的细粒度控制<i class="fas fa-angle-right" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.159.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright" aria-hidden=true></i><span itemprop=copyrightYear>2018 - 2026</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>xxxx</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span><span class=icp-splitter>&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a rel="license external nofollow noopener noreffer" href=https://beian.miit.gov.cn/ target=_blank>京ICP备2022005236号-2</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up" aria-hidden=true></i></a></div><div id=fixed-buttons-hidden><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment" aria-hidden=true></i></a></div><link rel=stylesheet href=/css/custom.5e3a466a7db6fe3c8eae7b92d6e54551a97a1e72b5a2aeb293081a8301d4ee11.css integrity="sha256-XjpGan22/jyOrnuS1uVFUal6HnK1oq6ykwgagwHU7hE="><script src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js></script><script src=/lib/lunr/lunr.stemmer.support.min.8127f0ca4cabc7246f3620f3ef3bf9b1db02805dfe03d6d4c57bc74bc0bf6eea.js integrity="sha256-gSfwykyrxyRvNiDz7zv5sdsCgF3+A9bUxXvHS8C/buo="></script><script src=/lib/lunr/lunr.zh.min.825fab54c26891370cbd3df4cdff5c9de31af8bb84474e6774573463d8708ae7.js integrity="sha256-gl+rVMJokTcMvT30zf9cneMa+LuER05ndFc0Y9hwiuc="></script><script src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js></script><script>window.config={comment:{},search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:30,type:"lunr"}}</script><script src=/js/theme.f476c0bc5b2317256a171c0c0b8081135972446d5999890c685ea5c9cf95d034.js integrity="sha256-9HbAvFsjFyVqFxwMC4CBE1lyRG1ZmYkMaF6lyc+V0DQ="></script><script>var dnt,doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FL23FNP7CM")}</script><script src="https://www.googletagmanager.com/gtag/js?id=G-FL23FNP7CM" async></script><script>var _hmt=_hmt||[];(function(){var e,t=document.createElement("script");t.src="https://hm.baidu.com/hm.js?4b7c98449a6edf8492a8f3404e6d06a0",e=document.getElementsByTagName("script")[0],e.parentNode.insertBefore(t,e)})()</script></body></html>

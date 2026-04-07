@@ -1,5 +1,17 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 -</title><link>https://tornado404.github.io/posts/</link><description>所有文章 |</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>架构精华</title><link>https://tornado404.github.io/posts/cc-arch-read/</link><pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/cc-arch-read/</guid><description>核心架构思想解读，包括 Multi-Agent 架构、Reasoning Loop、模式与最佳实践</description></item><item><title>3D 高斯泼溅</title><link>https://tornado404.github.io/posts/3d-gaussian/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/3d-gaussian/</guid><description>3D Gaussian Splatting 原理与 Web 端渲染实践。</description></item><item><title>Claude Code 源码剖析</title><link>https://tornado404.github.io/posts/cc-code-read/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/cc-code-read/</guid><description><![CDATA[<blockquote>
-<p>本系列文章旨在通过阅读 Claude Code 源码，理解一个顶尖 AI 应用的开发设计思路与架构。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 -</title><link>https://tornado404.github.io/posts/</link><description>所有文章 |</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://tornado404.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>IDE 集成 — Zed、VS Code 与 ACP 协议</title><link>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/08-ide-integration/</guid><description><![CDATA[<h1 id="ide-集成--zedvs-code-与-acp-协议">IDE 集成 — Zed、VS Code 与 ACP 协议</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/ide/</code>, <code>packages/opencode/src/acp/</code>, <code>packages/extensions/</code>
+核心文件：<code>ide/index.ts</code>, <code>acp/agent.ts</code>, <code>acp/session.ts</code>
+技术栈：ACP + HTTP + WebSocket + stdio</p>]]></description></item><item><title>MCP 实现 — 协议支持与工具翻译</title><link>https://tornado404.github.io/posts/opencode-read/09-mcp-implementation/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/09-mcp-implementation/</guid><description><![CDATA[<h1 id="mcp-实现--协议支持与工具翻译">MCP 实现 — 协议支持与工具翻译</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/mcp/</code>
+核心文件：<code>mcp/index.ts</code>
+技术栈：@modelcontextprotocol/sdk + Effect + JSON Schema</p>]]></description></item><item><title>MCP 集成 — 三层架构与 OAuth 支持</title><link>https://tornado404.github.io/posts/omo-code-read/09-mcp-system/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/omo-code-read/09-mcp-system/</guid><description><![CDATA[<h1 id="mcp-集成--三层架构与-oauth-支持">MCP 集成 — 三层架构与 OAuth 支持</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/omo-code/src/mcp/</code>, <code>src/features/mcp-oauth/</code>
+核心文件：<code>websearch/</code>, <code>context7/</code>, <code>grep_app/</code>, <code>mcp-oauth.ts</code>
+技术栈：@modelcontextprotocol/sdk + OAuth 2.0 + PKCE + DCR (RFC 7591)</p>]]></description></item><item><title>Oh-My-OpenAgent 源码剖析</title><link>https://tornado404.github.io/posts/omo-code-read/00-%E5%AF%BC%E8%AF%BB/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/omo-code-read/00-%E5%AF%BC%E8%AF%BB/</guid><description><![CDATA[<blockquote>
+<p>本系列文章旨在通过阅读 Oh-My-OpenAgent 源码，理解如何基于 OpenCode 构建复杂的多智能体编排系统。</p>
 </blockquote>
 <h2 id="系列目录">系列目录</h2>
 <table>
@@ -13,60 +25,154 @@
   <tbody>
       <tr>
           <td>01</td>
-          <td><a href="/posts/cc-code-read/00-%e5%af%bc%e8%af%bb/" rel="">导读</a></td>
+          <td><a href="/posts/omo-code-read/00-%e5%af%bc%e8%af%bb/" rel="">导读</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>02</td>
-          <td><a href="/posts/cc-code-read/01-architecture-overview/" rel="">架构概览 — 整体架构设计与核心模块</a></td>
+          <td><a href="/posts/omo-code-read/01-architecture-overview/" rel="">架构概览 — 插件架构与初始化流程</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>03</td>
-          <td><a href="/posts/cc-code-read/02_%E5%B7%A5%E5%85%B7%E7%B3%BB%E7%BB%9F/" rel="">工具系统 — 工具注册、延迟加载与执行隔离</a></td>
+          <td><a href="/posts/omo-code-read/02-plugin-hooks/" rel="">插件接入 — Hook 系统与 OpenCode 集成</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>04</td>
-          <td><a href="/posts/cc-code-read/03_%E5%91%BD%E4%BB%A4%E7%B3%BB%E7%BB%9F/" rel="">命令系统 — Slash 命令解析与执行流程</a></td>
+          <td><a href="/posts/omo-code-read/03-multi-agent/" rel="">多智能体系统 — 11 个专业化 Agent 与分类编排</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>05</td>
-          <td><a href="/posts/cc-code-read/04_%E6%9F%A5%E8%AF%A2%E5%BC%95%E6%93%8E/" rel="">查询引擎 — 流式响应与上下文优化</a></td>
+          <td><a href="/posts/omo-code-read/04-lifecycle-hooks/" rel="">生命周期钩子 — 52 个 Hook 的三层架构</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>06</td>
-          <td><a href="/posts/cc-code-read/05_%E4%B8%8A%E4%B8%8B%E6%96%87_%E8%AE%B0%E5%BF%86/" rel="">上下文与记忆 — System Prompt、Token 预算与记忆系统</a></td>
+          <td><a href="/posts/omo-code-read/05-tool-system/" rel="">工具系统 — 26 个扩展工具</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>07</td>
-          <td><a href="/posts/cc-code-read/06_%E6%9D%83%E9%99%90%E5%AE%89%E5%85%A8/" rel="">权限与安全 — 分层过滤架构与 Auto Mode 分类器</a></td>
+          <td><a href="/posts/omo-code-read/06-skill-system/" rel="">技能系统 — 8 个内置 Skill 与四层发现机制</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>08</td>
-          <td><a href="/posts/cc-code-read/07_ui%E7%BB%84%E4%BB%B6/" rel="">OpenCode CLI UI 组件 — Go + Cobra 的 TUI 远程控制</a></td>
+          <td><a href="/posts/omo-code-read/07-config-system/" rel="">配置系统 — Zod v4 Schema 与多层合并</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>09</td>
-          <td><a href="/posts/cc-code-read/08_%E6%9C%8D%E5%8A%A1%E5%B1%82/" rel="">OpenCode 服务层 — HTTP 客户端、配置与依赖注入</a></td>
+          <td><a href="/posts/omo-code-read/08-background-agent/" rel="">后台任务管理 — 并发控制与 Tmux 集成</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>10</td>
-          <td><a href="/posts/cc-code-read/10_Agent%E5%8D%8F%E8%B0%83/" rel="">Agent 协调 — 子 Agent 派生、团队协作与自反思</a></td>
+          <td><a href="/posts/omo-code-read/09-mcp-system/" rel="">MCP 集成 — 三层架构与 OAuth 支持</a></td>
           <td>已完成</td>
       </tr>
       <tr>
           <td>11</td>
-          <td><a href="/posts/cc-code-read/11_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="">性能优化 — 启动加速、上下文压缩与资源管理</a></td>
-          <td>待完成</td>
+          <td><a href="/posts/omo-code-read/10-builtin-commands/" rel="">内置命令 — 8 个复杂工作流命令</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td><a href="/posts/omo-code-read/11-prompt-cache-jitter/" rel="">Prompt 前缀抖动 — 工具注册与 Hook 注入对缓存的影响</a></td>
+          <td>已完成</td>
       </tr>
   </tbody>
 </table>
-<h2 id="为什么要研究-claude-code-源码">为什么要研究 Claude Code 源码</h2>
-<p>Claude Code 是 Anthropic 官方推出的 AI 编程助手，代表了当前 AI 辅助编程领域的最高水平。研究其源码可以帮助我们：</p>]]></description></item><item><title>Docker 容器化</title><link>https://tornado404.github.io/posts/docker/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/docker/</guid><description>深入理解 Docker 核心原理：Namespace、Cgroups、UnionFS、容器网络与存储。</description></item><item><title>etcd 分布式存储</title><link>https://tornado404.github.io/posts/etcd/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/etcd/</guid><description>深度剖析 etcd 核心机制：Raft 协议、MVCC、WAL 写入流程与 Watch 订阅模型。</description></item><item><title>Git 版本控制</title><link>https://tornado404.github.io/posts/git/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/git/</guid><description>Git 常用命令、SSH 密钥配置以及 Git 工作流最佳实践。</description></item><item><title>Go 语言</title><link>https://tornado404.github.io/posts/go/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/go/</guid><description>Go 语言核心知识点：并发编程（chan、sync）、运行时（pprof）、标准库与工程实践。</description></item><item><title>Go-Micro 微服务</title><link>https://tornado404.github.io/posts/go-micro/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/go-micro/</guid><description>基于 Go-Micro 框架的微服务开发实践：服务注册发现、gRPC 与链路追踪。</description></item><item><title>gRPC 与 Protobuf</title><link>https://tornado404.github.io/posts/grpc/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/grpc/</guid><description>深度掌握 gRPC：Protobuf 语法、流式通信、TLS 加密、负载均衡与拦截器。</description></item><item><title>Java 与 Spring</title><link>https://tornado404.github.io/posts/java/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/java/</guid><description>Java 核心技术：JVM 运行时区、设计模式、Spring IoC 与 MyBatis 持久层框架。</description></item></channel></rss>
+<h2 id="项目定位">项目定位</h2>
+<p>Oh-My-OpenAgent（简称 OMO）是一个基于 OpenCode 构建的插件系统，它的核心目标是：<strong>将单个 AI Agent 改造成一个协调的开发团队</strong>。</p>]]></description></item><item><title>OpenCode 源码剖析</title><link>https://tornado404.github.io/posts/opencode-read/00-%E5%AF%BC%E8%AF%BB/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/00-%E5%AF%BC%E8%AF%BB/</guid><description><![CDATA[<blockquote>
+<p>本系列文章旨在通过阅读 OpenCode 源码，理解一个开源 AI 编程助手的设计思路与架构，并与 Claude Code 进行横向对比。</p>
+</blockquote>
+<h2 id="系列目录">系列目录</h2>
+<table>
+  <thead>
+      <tr>
+          <th>序号</th>
+          <th>文章</th>
+          <th>状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>01</td>
+          <td><a href="/posts/opencode-read/00-%e5%af%bc%e8%af%bb/" rel="">导读</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>02</td>
+          <td><a href="/posts/opencode-read/01-architecture-overview/" rel="">架构概览 — Turborepo Monorepo 与核心模块</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>03</td>
+          <td><a href="/posts/opencode-read/02-tool-system/" rel="">工具系统 — Effect 框架与工具注册</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>04</td>
+          <td><a href="/posts/opencode-read/03-command-system/" rel="">命令系统 — Slash 命令与动态加载</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>05</td>
+          <td><a href="/posts/opencode-read/05-session-context/" rel="">会话与上下文 — 消息流、压缩与记忆</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>06</td>
+          <td><a href="/posts/opencode-read/06-multi-agent/" rel="">多智能体协作 — Task 工具与子 Agent 派生</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>07</td>
+          <td><a href="/posts/opencode-read/07-config-system/" rel="">配置系统 — 多层配置合并与路径解析</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>08</td>
+          <td><a href="/posts/opencode-read/08-ide-integration/" rel="">IDE 集成 — Zed、VS Code 与 ACP 协议</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>09</td>
+          <td><a href="/posts/opencode-read/09-mcp-implementation/" rel="">MCP 实现 — 协议支持与工具翻译</a></td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td><a href="/posts/opencode-read/10-permission-security/" rel="">权限与安全 — Ruleset 驱动的细粒度控制</a></td>
+          <td>已完成</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="为什么要研究-opencode-源码">为什么要研究 OpenCode 源码</h2>
+<p>OpenCode 是由 SST 团队开发的开源 AI 编程助手（由 AWS/Anthropic 前员工创建），是当前最接近 Claude Code 设计的开源竞品。研究其源码可以帮助我们：</p>]]></description></item><item><title>Prompt 前缀抖动 — 工具注册与动态 Hook 注入对缓存的影响</title><link>https://tornado404.github.io/posts/omo-code-read/11-prompt-cache-jitter/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/omo-code-read/11-prompt-cache-jitter/</guid><description><![CDATA[<h1 id="prompt-前缀抖动--工具注册与动态-hook-注入对缓存的影响">Prompt 前缀抖动 — 工具注册与动态 Hook 注入对缓存的影响</h1>
+<blockquote>
+<p>源码路径：基于 <code>/mnt/e/code/cc/opencode/</code> 和 <code>/mnt/e/code/cc/omo-code/</code>
+分析依据：<code>llm.ts</code>, <code>prompt.ts</code>, <code>registry.ts</code>, <code>plugin-interface.ts</code>, <code>messages-transform.ts</code>, <code>context-injector/</code></p>
+</blockquote>
+<hr>
+<h2 id="1-问题描述">1. 问题描述</h2>
+<p>有观点认为：<strong>OpenCode 的工具注册和 OMO 的动态 Hook 注入会导致 Prompt 前缀频繁抖动，从而引发缓存失效。</strong></p>]]></description></item><item><title>会话与上下文 — 消息流、压缩与记忆</title><link>https://tornado404.github.io/posts/opencode-read/05-session-context/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/05-session-context/</guid><description><![CDATA[<h1 id="会话与上下文--消息流压缩与记忆">会话与上下文 — 消息流、压缩与记忆</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/session/</code>
+核心文件：<code>prompt.ts</code>, <code>processor.ts</code>, <code>llm.ts</code>, <code>compaction.ts</code>, <code>system.ts</code>
+技术栈：Effect + AI SDK + SQLite + Drizzle ORM</p>]]></description></item><item><title>内置命令 — 8 个复杂工作流命令</title><link>https://tornado404.github.io/posts/omo-code-read/10-builtin-commands/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/omo-code-read/10-builtin-commands/</guid><description><![CDATA[<h1 id="内置命令--8-个复杂工作流命令">内置命令 — 8 个复杂工作流命令</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/omo-code/src/features/builtin-commands/</code>
+核心文件：<code>start-work.ts</code>, <code>refactor.ts</code>, <code>handoff.ts</code>, <code>init-deep.ts</code>
+技术栈：YAML + Shell Scripting + 多 Agent 协调</p>]]></description></item><item><title>后台任务管理 — 并发控制与 Tmux 集成</title><link>https://tornado404.github.io/posts/omo-code-read/08-background-agent/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/omo-code-read/08-background-agent/</guid><description><![CDATA[<h1 id="后台任务管理--并发控制与-tmux-集成">后台任务管理 — 并发控制与 Tmux 集成</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/omo-code/src/features/background-agent/</code>, <code>src/features/tmux-subagent/</code>
+核心文件：<code>BackgroundManager.ts</code>, <code>TmuxSessionManager.ts</code>, <code>ConcurrencyManager.ts</code>
+技术栈：Promise + Polling + Tmux CLI</p>]]></description></item><item><title>命令系统 — Slash 命令与动态加载</title><link>https://tornado404.github.io/posts/opencode-read/03-command-system/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><author>xxxx</author><guid>https://tornado404.github.io/posts/opencode-read/03-command-system/</guid><description><![CDATA[<h1 id="命令系统--slash-命令与动态加载">命令系统 — Slash 命令与动态加载</h1>
+<blockquote>
+<p>源码路径：<code>/mnt/e/code/cc/opencode/packages/opencode/src/command/</code>
+核心文件：<code>command/index.ts</code>
+技术栈：Effect + Markdown Frontmatter + MCP Prompts</p>]]></description></item></channel></rss>
